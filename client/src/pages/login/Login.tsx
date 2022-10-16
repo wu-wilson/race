@@ -1,21 +1,21 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../context/firebase";
+import { FirebaseError } from "firebase/app";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import {
   HiOutlineUser,
   HiOutlineLockClosed,
   HiOutlineLockOpen,
 } from "react-icons/hi";
-import Particles from "../../components/particles/Particles";
 import {
   setPersistence,
   browserLocalPersistence,
   browserSessionPersistence,
 } from "firebase/auth";
+import Particles from "../../components/particles/Particles";
 import vars from "../../index.module.scss";
 import styles from "./Login.module.scss";
-import { auth } from "../../context/firebase";
-import { FirebaseError } from "firebase/app";
-import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = () => {
   const navigate = useNavigate();
