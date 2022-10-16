@@ -1,0 +1,24 @@
+// Variables
+$primary-color: #89a4c7;
+$secondary-color: #4e709d;
+$tertiary-color: #f5b17b;
+$quaternary-color: #cdd5e0;
+$page-color: #f0f0f0;
+$card-color: white;
+$font-family: Roboto;
+$smartphone-bp: 800px;
+$tablet-bp: 1200px;
+
+// Variable exports
+:export {
+  primary_color: $primary-color;
+  page_color: $page-color;
+  card_color: $card-color;
+  font_family: $font-family;
+  smartphone_bp: $smartphone-bp;
+  tablet_bp: $tablet-bp;
+}
+
+body {
+  margin: 0;
+}
