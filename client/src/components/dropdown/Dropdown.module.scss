@@ -1,0 +1,39 @@
+@use "../../index.module.scss" as vars;
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 10px;
+  font-family: vars.$font_family;
+  border: 2px solid vars.$primary-color;
+  border-radius: 10px;
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+  .arrow {
+    color: vars.$primary-color;
+  }
+  .menu {
+    position: absolute;
+    height: fit-content;
+    box-sizing: border-box;
+    left: -1px;
+    border: 2px solid vars.$primary-color;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    .option {
+      box-sizing: border-box;
+      padding: 10px;
+      width: 100%;
+      &:hover {
+        cursor: pointer;
+        background-color: vars.$quaternary_color;
+      }
+    }
+  }
+}
