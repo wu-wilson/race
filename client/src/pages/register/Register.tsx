@@ -33,10 +33,10 @@ const Register = () => {
         .catch((e: FirebaseError) => {
           switch (e.code) {
             case "auth/email-already-in-use":
-              setFirebaseError(`${email} is already in use.`);
+              setFirebaseError(`*${email} is already in use.`);
               break;
             default:
-              setFirebaseError("An error occurred. Please try again later.");
+              setFirebaseError("*An error occurred. Please try again later.");
               break;
           }
           setShowFirebaseError(true);
