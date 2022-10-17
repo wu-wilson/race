@@ -81,7 +81,7 @@
     justify-content: flex-end;
     margin-top: 1rem;
     .create-account {
-      width: 120px;
+      width: 140px;
       height: 45px;
       border: none;
       border-radius: 10px;
@@ -89,6 +89,7 @@
       font-weight: bold;
       color: white;
       transition: ease background-color 200ms;
+      font-family: vars.$font_family;
       &:hover {
         cursor: pointer;
         background-color: vars.$secondary_color;

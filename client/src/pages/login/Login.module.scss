@@ -108,6 +108,7 @@
       font-weight: bold;
       color: white;
       transition: ease background-color 200ms;
+      font-family: vars.$font_family;
       &:hover {
         cursor: pointer;
         background-color: vars.$secondary_color;
