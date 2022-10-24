@@ -1,6 +1,5 @@
 import { RiAlertLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import Particles from "../../components/particles/Particles";
 import vars from "../../index.module.scss";
 import styles from "./Error.module.scss";
