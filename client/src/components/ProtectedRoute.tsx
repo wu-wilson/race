@@ -10,6 +10,8 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (!user) {
       navigate("/login");
+    } else if (!user.emailVerified) {
+      navigate("/verify");
     }
   }, [user]);
 

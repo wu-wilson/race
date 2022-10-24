@@ -36,6 +36,7 @@ const Login = () => {
         switch (e.code) {
           case "auth/invalid-email":
           case "auth/wrong-password":
+          case "auth/user-not-found":
             setError("*Email or password is incorrect.");
             break;
           default:
