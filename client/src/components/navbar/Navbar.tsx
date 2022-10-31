@@ -1,6 +1,12 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { RiDashboardLine, RiInformationLine, RiAtLine } from "react-icons/ri";
+import {
+  RiDashboardLine,
+  RiInformationLine,
+  RiAtLine,
+  RiMenuFoldFill,
+  RiMenuUnfoldFill,
+} from "react-icons/ri";
 import { UserAuth } from "../../context/AuthContext";
 import { auth } from "../../context/firebase";
 import { signOut } from "firebase/auth";
@@ -27,11 +33,29 @@ const Navbar = () => {
   const navigate = useNavigate();
   const user = UserAuth();
 
+  const [open, setOpen] = useState<boolean>(false);
+
   const logout = async () => {
     await signOut(auth).then(() => {
       navigate("/login");
     });
   };
+
+  // Close hamburger menu when the user clicks outside.
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      e.preventDefault();
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
 
   return (
     <div className={styles["container"]}>
@@ -73,6 +97,29 @@ const Navbar = () => {
             Login
           </button>
         )}
+        <div className={styles["hamburger"]} onClick={() => setOpen(!open)}>
+          {open ? (
+            <RiMenuUnfoldFill size={23} className={styles["icon"]} />
+          ) : (
+            <RiMenuFoldFill size={23} className={styles["icon"]} />
+          )}
+          {open ? (
+            <div className={styles["menu"]} ref={ref}>
+              {links.map((link) => (
+                <div
+                  key={link.path}
+                  className={styles["option"]}
+                  onClick={() => navigate(link.path)}
+                >
+                  <span className={styles["label"]}>
+                    <span className={styles["icon"]}>{link.icon}</span>
+                    {link.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          ) : null}
+        </div>
       </div>
     </div>
   );
