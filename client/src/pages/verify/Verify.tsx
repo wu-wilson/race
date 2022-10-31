@@ -3,8 +3,7 @@ import { UserAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { User, sendEmailVerification } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
-import Particles from "../../components/particles/Particles";
-import vars from "../../index.module.scss";
+import Navbar from "../../components/navbar/Navbar";
 import styles from "./Verify.module.scss";
 
 const Verify = () => {
@@ -50,7 +49,7 @@ const Verify = () => {
 
   return (
     <>
-      <Particles num={40} radius={6} color={vars["primary_color"]} />
+      <Navbar />
       <div className={styles["container"]}>
         <div className={styles["card"]}>
           <div className={styles["titles"]}>

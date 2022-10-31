@@ -9,8 +9,7 @@ import {
   HiOutlineLockClosed,
   HiOutlineLockOpen,
 } from "react-icons/hi";
-import Particles from "../../components/particles/Particles";
-import vars from "../../index.module.scss";
+import Navbar from "../../components/navbar/Navbar";
 import styles from "./Register.module.scss";
 
 const Register = () => {
@@ -52,7 +51,7 @@ const Register = () => {
 
   return (
     <>
-      <Particles num={40} radius={6} color={vars["primary_color"]} />
+      <Navbar />
       <div className={styles["container"]}>
         <div className={styles["card"]}>
           <div className={styles["titles"]}>

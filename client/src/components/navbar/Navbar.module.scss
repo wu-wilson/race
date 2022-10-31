@@ -1,0 +1,80 @@
+@use "../../index.module.scss" as vars;
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: vars.$font_family;
+  box-shadow: 0 0px 15px 0px rgb(228, 228, 228);
+  background-color: vars.$nav_color;
+  z-index: 1;
+}
+
+.links {
+  display: flex;
+  width: fit-content;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  .icon {
+    position: absolute;
+    left: -1.5rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: vars.$primary_color;
+  }
+  .link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    &::before {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      content: "";
+      width: 100%;
+      height: 5px;
+      background-color: vars.$tertiary_color;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 200ms ease-out;
+    }
+    &:hover {
+      cursor: pointer;
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+  }
+}
+
+.right-items {
+  position: absolute;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  .button {
+    padding: 7px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: vars.$primary_color;
+    color: white;
+    transition: ease background-color 200ms;
+    font-family: vars.$font_family;
+    margin-left: 1rem;
+    font-size: 0.7rem;
+    &:hover {
+      cursor: pointer;
+      background-color: vars.$secondary_color;
+    }
+  }
+}

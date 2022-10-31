@@ -1,4 +1,4 @@
-import { onAuthStateChanged, onIdTokenChanged, User } from "firebase/auth";
+import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "./firebase";
 import {
   createContext,

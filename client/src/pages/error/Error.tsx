@@ -1,7 +1,6 @@
 import { RiAlertLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import Particles from "../../components/particles/Particles";
-import vars from "../../index.module.scss";
+import Navbar from "../../components/navbar/Navbar";
 import styles from "./Error.module.scss";
 
 const Error = () => {
@@ -13,7 +12,7 @@ const Error = () => {
 
   return (
     <>
-      <Particles num={40} radius={6} color={vars["primary_color"]} />
+      <Navbar />
       <div className={styles["container"]}>
         <div className={styles["card"]}>
           <div className={styles["title"]}>

@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 import { auth } from "../../context/firebase";
-import Particles from "../../components/particles/Particles";
-import vars from "../../index.module.scss";
+import Navbar from "../../components/navbar/Navbar";
 import styles from "./ResetPassword.module.scss";
 
 const ResetPassword = () => {
@@ -37,7 +36,7 @@ const ResetPassword = () => {
 
   return (
     <>
-      <Particles num={40} radius={6} color={vars["primary_color"]} />
+      <Navbar />
       <div className={styles["container"]}>
         <div className={styles["card"]}>
           <div className={styles["titles"]}>

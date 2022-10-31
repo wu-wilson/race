@@ -13,8 +13,7 @@ import {
   browserLocalPersistence,
   browserSessionPersistence,
 } from "firebase/auth";
-import Particles from "../../components/particles/Particles";
-import vars from "../../index.module.scss";
+import Navbar from "../../components/navbar/Navbar";
 import styles from "./Login.module.scss";
 
 const Login = () => {
@@ -67,7 +66,7 @@ const Login = () => {
 
   return (
     <>
-      <Particles num={40} radius={6} color={vars["primary_color"]} />
+      <Navbar />
       <div className={styles["container"]}>
         <div className={styles["card"]}>
           <div className={styles["titles"]}>
