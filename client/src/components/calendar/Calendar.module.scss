@@ -7,7 +7,11 @@
   border: 1px solid black;
   font-family: themes.$font-family;
   padding: 10px;
-  background-color: themes.$card-color;
+  transition: ease-in color 200ms, ease-in background-color 200ms;
+  @include themes.themed() {
+    color: themes.t("font-color");
+    background-color: themes.t("card-bg");
+  }
 }
 
 .header {
@@ -62,19 +66,25 @@
   }
   .before,
   .after {
-    color: lightgrey;
+    @include themes.themed() {
+      color: themes.t("cal-invalid");
+    }
   }
   .selectedBefore,
   .selectedAfter {
-    color: lightgrey;
     background-color: rgb(235, 235, 235);
+    @include themes.themed() {
+      color: themes.t("cal-invalid");
+    }
   }
   .day,
   .today,
   .selected {
     &:hover {
       cursor: pointer;
-      background-color: lightgrey;
+      @include themes.themed() {
+        color: themes.t("cal-invalid");
+      }
     }
   }
   .selected {

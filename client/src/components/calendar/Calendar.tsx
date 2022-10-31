@@ -91,7 +91,16 @@ const Calendar = ({
             <div
               key={day.format("YYYY-MM-DD")}
               className={dayStyle(day)}
-              onClick={() => setSelectedDay(day)}
+              onClick={() => {
+                if (
+                  !(
+                    day.isBefore(monthStart, "day") ||
+                    day.isAfter(monthEnd, "day")
+                  )
+                ) {
+                  setSelectedDay(day);
+                }
+              }}
             >
               {day.format("D")}
             </div>

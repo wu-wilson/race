@@ -6,7 +6,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: themes.$font_family;
+  font-family: themes.$font-family;
+  transition: ease-in color 200ms;
+  @include themes.themed() {
+    color: themes.t("font-color");
+  }
 }
 
 .card {
@@ -19,10 +23,11 @@
   box-sizing: border-box;
   padding: 40px;
   justify-content: space-between;
+  border-radius: 20px;
+  transition: ease-in background-color 200ms;
   @include themes.themed() {
     background-color: themes.t("card-bg");
   }
-  border-radius: 20px;
 }
 
 .titles {
@@ -56,7 +61,6 @@
       height: 100%;
       width: 20px;
       padding: 0px 5px 0px 5px;
-      transition: ease color 200ms;
     }
     .lock {
       &:hover {
@@ -75,6 +79,13 @@
         outline: none;
         border: 2px solid themes.$secondary-color;
       }
+      transition: ease-in background-color 200ms, ease-in border 200ms,
+        ease-in color 200ms;
+      @include themes.themed() {
+        background-color: themes.t("input-bg");
+        border: 1.5px solid themes.t("input-bg");
+        color: themes.t("font-color");
+      }
     }
   }
   .remember-forgot-container {
@@ -85,6 +96,7 @@
       input[type="checkbox"] {
         vertical-align: middle;
         margin-left: 0;
+        background-color: red;
       }
     }
     .forgot {
@@ -109,7 +121,6 @@
       background-color: themes.$primary_color;
       font-weight: bold;
       color: white;
-      transition: ease background-color 200ms;
       font-family: themes.$font_family;
       &:hover {
         cursor: pointer;
@@ -124,7 +135,6 @@
   margin-top: 2rem;
   .sign-up {
     text-decoration: underline;
-    transition: ease color 200ms;
     &:hover {
       cursor: pointer;
       font-weight: bold;

@@ -9,8 +9,12 @@
   font-family: themes.$font-family;
   border: 2px solid themes.$primary-color;
   border-radius: 10px;
-  background-color: themes.$card-color;
   position: relative;
+  transition: ease-in color 200ms, ease-in background-color 200ms;
+  @include themes.themed() {
+    color: themes.t("font-color");
+    background-color: themes.t("card-bg");
+  }
   &:hover {
     cursor: pointer;
   }
@@ -24,10 +28,13 @@
     left: -1px;
     border: 2px solid themes.$primary-color;
     border-radius: 10px;
-    background-color: themes.$card-color;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    transition: ease-in background-color 200ms;
+    @include themes.themed() {
+      background-color: themes.t("card-bg");
+    }
     .option {
       box-sizing: border-box;
       padding: 10px;

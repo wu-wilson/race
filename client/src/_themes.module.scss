@@ -26,9 +26,21 @@ $tablet-bp: 1200px;
 $themes: (
   light: (
     card-bg: white,
+    page-bg: #e4e4e4,
+    input-bg: rgb(240, 240, 240),
+    nav-bg: white,
+    font-color: black,
+    box-shadow: rgb(228, 228, 228),
+    cal-invalid: lightgrey,
   ),
   dark: (
-    card-bg: black,
+    card-bg: rgb(49, 49, 58),
+    page-bg: rgb(25, 25, 29),
+    input-bg: rgb(30, 30, 36),
+    nav-bg: rgb(21, 21, 24),
+    font-color: white,
+    box-shadow: black,
+    cal-invalid: grey,
   ),
 );
 

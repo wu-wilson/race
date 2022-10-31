@@ -10,7 +10,9 @@
     width: 0;
     height: 0;
     &:checked + .slider {
-      background-color: #7a7a78;
+      @include themes.themed() {
+        background-color: themes.t("card-bg");
+      }
     }
     &:checked + .slider:before {
       -webkit-transform: translateX(20px);

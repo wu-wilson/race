@@ -7,6 +7,10 @@
   align-items: center;
   justify-content: center;
   font-family: themes.$font-family;
+  transition: ease-in color 200ms;
+  @include themes.themed() {
+    color: themes.t("font-color");
+  }
 }
 
 .card {
@@ -19,8 +23,11 @@
   box-sizing: border-box;
   padding: 40px;
   justify-content: space-between;
-  background-color: themes.$card-color;
   border-radius: 20px;
+  transition: ease-in background-color 200ms;
+  @include themes.themed() {
+    background-color: themes.t("card-bg");
+  }
 }
 
 .titles {

@@ -6,6 +6,9 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: themes.$page-color;
   z-index: -1;
+  transition: ease-in 200ms;
+  @include themes.themed() {
+    background-color: themes.t("page-bg");
+  }
 }
