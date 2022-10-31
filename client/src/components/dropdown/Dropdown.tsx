@@ -26,7 +26,6 @@ const Dropdown = ({
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      e.preventDefault();
       if (ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false);
       }
