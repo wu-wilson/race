@@ -57,6 +57,14 @@ const Navbar = () => {
     };
   }, [ref]);
 
+  // Close hamburger menu on resize event.
+  useEffect(() => {
+    window.addEventListener("resize", () => setOpen(false));
+    return () => {
+      window.removeEventListener("resize", () => setOpen(false));
+    };
+  }, []);
+
   return (
     <div className={styles["container"]}>
       <div className={styles["links"]}>
