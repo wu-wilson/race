@@ -1,0 +1,58 @@
+// Vars
+$primary-color: #89a4c7;
+$secondary-color: #4e709d;
+$tertiary-color: #f5b17b;
+$quaternary-color: #cdd5e0;
+$page-color: #f0f0f0;
+$card-color: white;
+$nav-color: white;
+$font-family: Poppins;
+$smartphone-bp: 800px;
+$tablet-bp: 1200px;
+
+// Var exports
+:export {
+  primary_color: $primary-color;
+  tertiary_color: $tertiary-color;
+  quaternary_color: $quaternary-color;
+  page_color: $page-color;
+  card_color: $card-color;
+  nav_color: $nav-color;
+  font_family: $font-family;
+  smartphone_bp: $smartphone-bp;
+  tablet_bp: $tablet-bp;
+}
+
+$themes: (
+  light: (
+    card-bg: white,
+  ),
+  dark: (
+    card-bg: black,
+  ),
+);
+
+// Return a theme-map
+@mixin themed() {
+  @each $theme, $map in $themes {
+    :global(.theme--#{$theme}) & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), "#{$key}");
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+// Return a value in a key-value pair for a theme
+@function t($key) {
+  @return map-get($theme-map, $key);
+}

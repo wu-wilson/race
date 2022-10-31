@@ -1,4 +1,4 @@
-@use "../../index.module.scss" as vars;
+@use "../../_themes.module.scss" as themes;
 
 .container {
   height: 100vh;
@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: vars.$font_family;
+  font-family: themes.$font-family;
 }
 
 .card {
@@ -19,7 +19,7 @@
   box-sizing: border-box;
   padding: 40px;
   justify-content: space-between;
-  background-color: vars.$card_color;
+  background-color: themes.$card-color;
   border-radius: 20px;
 }
 
@@ -72,7 +72,7 @@
       border-radius: 5px;
       &:focus {
         outline: none;
-        border: 2px solid vars.$secondary-color;
+        border: 2px solid themes.$secondary-color;
       }
     }
   }
@@ -85,14 +85,14 @@
       height: 45px;
       border: none;
       border-radius: 10px;
-      background-color: vars.$primary_color;
+      background-color: themes.$primary-color;
       font-weight: bold;
       color: white;
       transition: ease background-color 200ms;
-      font-family: vars.$font_family;
+      font-family: themes.$font-family;
       &:hover {
         cursor: pointer;
-        background-color: vars.$secondary_color;
+        background-color: themes.$secondary-color;
       }
     }
   }
@@ -107,7 +107,7 @@
     &:hover {
       cursor: pointer;
       font-weight: bold;
-      color: vars.$secondary_color;
+      color: themes.$secondary-color;
     }
   }
 }
@@ -127,7 +127,7 @@
 }
 
 /* Tablets */
-@media only screen and (max-width: vars.$tablet_bp) {
+@media only screen and (max-width: themes.$tablet-bp) {
   .card {
     width: 60%;
     font-size: 0.9rem;
@@ -138,7 +138,7 @@
 }
 
 /* Smartphones */
-@media only screen and (max-width: vars.$smartphone_bp) {
+@media only screen and (max-width: themes.$smartphone-bp) {
   .card {
     width: 85%;
     font-size: 0.8rem;

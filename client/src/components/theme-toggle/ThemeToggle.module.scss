@@ -1,4 +1,4 @@
-@use "../../index.module.scss" as vars;
+@use "../../_themes.module.scss" as themes;
 
 .switch {
   position: relative;
@@ -27,7 +27,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: vars.$primary_color;
+  background-color: themes.$primary-color;
   transition: 200ms;
   &:before {
     position: absolute;
@@ -61,6 +61,6 @@
   align-items: center;
   transition: ease transform 200ms;
   .icon {
-    color: vars.$tertiary_color;
+    color: themes.$tertiary-color;
   }
 }

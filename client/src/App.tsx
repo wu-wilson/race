@@ -8,14 +8,14 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Error from "./pages/error/Error";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Particles from "./components/particles/Particles";
-import vars from "./index.module.scss";
+import themes from "./_themes.module.scss";
 
 const App = () => {
   const theme: setTheme | null = Theme();
 
   return (
-    <>
-      <Particles num={40} radius={6} color={vars["primary_color"]} />
+    <div className={theme && theme.darkMode ? "theme--dark" : "theme--light"}>
+      <Particles num={40} radius={6} color={themes["primary_color"]} />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" />} />
@@ -34,7 +34,7 @@ const App = () => {
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </div>
   );
 };
 export default App;

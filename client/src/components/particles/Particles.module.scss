@@ -1,4 +1,4 @@
-@use "../../index.module.scss" as vars;
+@use "../../_themes.module.scss" as themes;
 
 .canvas {
   position: fixed;
@@ -6,6 +6,6 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: vars.$page_color;
+  background-color: themes.$page-color;
   z-index: -1;
 }
