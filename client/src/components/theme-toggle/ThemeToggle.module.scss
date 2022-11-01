@@ -30,7 +30,7 @@
   right: 0;
   bottom: 0;
   background-color: themes.$primary-color;
-  transition: 200ms;
+  transition: ease transform 200ms;
   &:before {
     position: absolute;
     content: "";
