@@ -15,15 +15,16 @@ const ThemeToggle = () => {
     <label className={styles["switch"]}>
       <input type="checkbox" onChange={changeTheme} />
       <span
-        className={`${styles["slider"]} ${styles["round"]} ${
+        className={`${styles["slider-box"]} ${
           theme && theme.darkMode ? styles["dark"] : ""
         }`}
       >
         <span
-          className={`${styles["icons"]}`}
+          className={styles["slider"]}
           style={{
             transform:
               theme && theme.darkMode ? "translateX(20px)" : "translateX(0px)",
+            backgroundColor: theme && theme.darkMode ? "black" : "white",
           }}
         >
           {theme && theme.darkMode ? (
