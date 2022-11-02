@@ -1,7 +1,8 @@
 import { useState } from "react";
 import moment, { Moment } from "moment";
 import StepProgressBar from "../../../components/step-progress-bar/StepProgressBar";
-import Calendar from "../../../components/calendar/Calendar";
+import Step1 from "./step1/Step1";
+import Step2 from "./step2/Step2";
 import styles from "./MakeReservation.module.scss";
 
 const progressDescriptions = ["Date", "Time", "Party", "Review"];
@@ -34,31 +35,8 @@ const MakeReservation = () => {
           descriptions={progressDescriptions}
         />
       </div>
-      {step === 1 ? (
-        <div className={styles["cal-container"]}>
-          <span className={styles["text"]}>
-            <span className={styles["direction"]}>
-              Select Your Reservation Date
-            </span>
-            <span className={styles["selection"]}>
-              {day.format("MMMM D, YYYY (dddd)")}
-            </span>
-            <span className={styles["key"]}>
-              <div className={styles["selected-day"]}>{day.format("D")}</div>{" "}
-              {`   =   Selected Date`}
-            </span>
-            <span className={styles["key"]}>
-              <div className={styles["today"]}>{moment().format("D")}</div>{" "}
-              {`   =   Today's Date`}
-            </span>
-            <span className={styles["key"]}>
-              <div className={styles["selectable"]}>{16}</div>{" "}
-              {`   =   Selectable Date`}
-            </span>
-          </span>
-          <Calendar selectedDay={day} setSelectedDay={setDay} />
-        </div>
-      ) : null}
+      {step === 1 ? <Step1 day={day} setDay={setDay} /> : null}
+      {step === 2 ? <Step2 /> : null}
       <div className={styles["buttons"]}>
         <button onClick={prevStep} disabled={step === 1}>
           Prev
