@@ -70,6 +70,7 @@
 .description {
   position: absolute;
   top: calc(100% + 10px);
+  font-size: 1rem;
   transition: ease-in color 200ms;
   @include themes.themed() {
     color: themes.t("font-color");
@@ -86,16 +87,22 @@
     height: 0.9rem;
     width: 0.9rem;
   }
+  .description {
+    font-size: 0.9rem;
+  }
 }
 
 /* Smartphones */
 @media only screen and (max-width: themes.$smartphone-bp) {
   .container {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
   .circle {
     font-size: 0.8rem;
     height: 0.8rem;
     width: 0.8rem;
+  }
+  .description {
+    font-size: 0.8rem;
   }
 }

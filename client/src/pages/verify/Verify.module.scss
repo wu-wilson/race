@@ -1,7 +1,7 @@
 @use "../../_themes.module.scss" as themes;
 
 .container {
-  height: 100vh;
+  height: calc(100vh - 4.5rem);
   width: 100vw;
   display: flex;
   align-items: center;
@@ -24,6 +24,7 @@
   padding: 40px;
   justify-content: space-between;
   border-radius: 20px;
+  margin-top: -4.5rem;
   transition: ease-in background-color 200ms;
   @include themes.themed() {
     background-color: themes.t("card-bg");

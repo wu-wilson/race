@@ -1,7 +1,7 @@
 @use "../../_themes.module.scss" as themes;
 
 .container {
-  height: 100vh;
+  height: calc(100vh - 4.5rem);
   width: 100vw;
   display: flex;
   align-items: center;
@@ -23,6 +23,7 @@
   justify-content: space-between;
   border-radius: 20px;
   overflow: hidden;
+  margin-top: -4.5rem;
   transition: ease-in background-color 200ms;
   @include themes.themed() {
     background-color: darken(themes.t("card-bg"), 5);
@@ -35,6 +36,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  width: 20%;
   .tab {
     min-width: fit-content;
     width: 100%;
@@ -44,6 +46,16 @@
     align-items: center;
     white-space: nowrap;
     transition: ease-in background-color 200ms;
+    // Reserve space for bolded text
+    &:after {
+      display: block;
+      content: attr(title);
+      font-weight: bold;
+      height: 1px;
+      color: transparent;
+      overflow: hidden;
+      visibility: hidden;
+    }
     &:hover {
       cursor: pointer;
       @include themes.themed() {
@@ -63,7 +75,7 @@
 
 .screen {
   width: 100%;
-  height: 65vh;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;

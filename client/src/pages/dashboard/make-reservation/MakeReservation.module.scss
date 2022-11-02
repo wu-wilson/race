@@ -1,8 +1,85 @@
 @use "../../../_themes.module.scss" as themes;
 
 .container {
+  position: relative;
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 40px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-family: themes.$font-family;
+  font-size: 1rem;
+  transition: ease-in color 200ms;
+  @include themes.themed() {
+    color: themes.t("font-color");
+  }
+}
+
+.progress {
+  width: 80%;
+}
+
+.cal-container {
+  border: 1px solid black;
+  width: 100%;
+  height: calc(100% - 9rem);
+  margin-top: calc(2rem + 10px);
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  padding: 0px 20px;
+  box-sizing: border-box;
+  height: 5rem;
+  button {
+    font-family: themes.$font-family;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: themes.$primary-color;
+    color: white;
+    transition: ease-in background-color 200ms;
+    &:hover {
+      cursor: pointer;
+      background-color: themes.$secondary-color;
+    }
+    &:disabled {
+      cursor: not-allowed;
+      background-color: lightgrey;
+      color: grey;
+    }
+  }
+}
+
+/* Tablets */
+@media only screen and (max-width: themes.$tablet-bp) {
+  .container {
+    font-size: 0.9rem;
+    padding: 20px;
+  }
+  .cal-container {
+    margin-top: calc(1.8rem + 10px);
+  }
+}
+
+/* Smartphones */
+@media only screen and (max-width: themes.$smartphone-bp) {
+  .container {
+    font-size: 0.8rem;
+    padding: 20px;
+  }
+  .cal-container {
+    margin-top: calc(1.6rem + 10px);
+  }
+  .progress {
+    width: 100%;
+  }
 }
