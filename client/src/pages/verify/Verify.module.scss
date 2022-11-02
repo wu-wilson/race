@@ -24,7 +24,6 @@
   padding: 40px;
   justify-content: space-between;
   border-radius: 20px;
-  margin-top: -4.5rem;
   transition: ease-in background-color 200ms;
   @include themes.themed() {
     background-color: themes.t("card-bg");

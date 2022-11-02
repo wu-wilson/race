@@ -23,10 +23,13 @@
 }
 
 .cal-container {
-  border: 1px solid black;
   width: 100%;
-  height: calc(100% - 9rem);
+  height: 100%;
   margin-top: calc(2rem + 10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .buttons {
@@ -34,11 +37,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
-  bottom: 0;
-  padding: 0px 20px;
+  padding-top: 20px;
   box-sizing: border-box;
-  height: 5rem;
   button {
     font-family: themes.$font-family;
     padding: 10px 20px;
