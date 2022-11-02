@@ -1,6 +1,7 @@
 @use "../../_themes.module.scss" as themes;
 
 .container {
+  position: relative;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -21,5 +22,46 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: ease-in border-color 200ms, ease-in background-color 200ms;
+  z-index: 1;
+}
+
+.complete {
+  background-color: themes.$primary-color;
   border: 3px solid themes.$primary-color;
+}
+
+.active {
+  border: 3px solid themes.$primary-color;
+  @include themes.themed() {
+    background-color: themes.t("card-bg");
+  }
+}
+
+.inactive {
+  border: 3px solid lightgrey;
+  @include themes.themed() {
+    background-color: themes.t("card-bg");
+  }
+}
+
+.progress-bar {
+  position: absolute;
+  top: calc(50% - 2px);
+  height: 4px;
+  width: 100%;
+  z-index: 0;
+  background-color: lightgrey;
+}
+
+.progress {
+  position: absolute;
+  top: calc(50% - 2px);
+  height: 4px;
+  width: 0%;
+  max-width: 100%;
+  z-index: 1;
+  border-radius: 4px;
+  background-color: themes.$primary-color;
+  transition: ease-in width 200ms;
 }

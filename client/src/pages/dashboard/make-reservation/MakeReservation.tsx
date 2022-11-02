@@ -3,11 +3,11 @@ import StepProgressBar from "../../../components/step-progress-bar/StepProgressB
 import styles from "./MakeReservation.module.scss";
 
 const MakeReservation = () => {
-  const [step, setStep] = useState<number>(0);
+  const [step, setStep] = useState<number>(3);
 
   return (
     <div className={styles["container"]}>
-      <StepProgressBar numSteps={3} step={step} setStep={setStep} />
+      <StepProgressBar numSteps={3} step={step} />
     </div>
   );
 };
