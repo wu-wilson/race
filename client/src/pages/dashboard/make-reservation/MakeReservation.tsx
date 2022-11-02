@@ -36,7 +36,7 @@ const MakeReservation = () => {
         />
       </div>
       {step === 1 ? <Step1 day={day} setDay={setDay} /> : null}
-      {step === 2 ? <Step2 /> : null}
+      {step === 2 ? <Step2 day={day} /> : null}
       <div className={styles["buttons"]}>
         <button onClick={prevStep} disabled={step === 1}>
           Prev
