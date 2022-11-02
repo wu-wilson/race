@@ -10,6 +10,7 @@ import MyBookings from "./my-bookings/MyBookings";
 import MakeReservation from "./make-reservation/MakeReservation";
 import CourtStatus from "./court-status/CourtStatus";
 import FriendActivity from "./friend-activity/FriendActivity";
+import themes from "../../_themes.module.scss";
 import styles from "./Dashboard.module.scss";
 
 type tab = {
@@ -58,6 +59,10 @@ const Dashboard = () => {
                 }`}
                 key={tab.name}
                 onClick={() => setSelectedTab(tab.name)}
+                style={{
+                  color: tab.name === selectedTab ? themes.primary_color : "",
+                  fontWeight: tab.name === selectedTab ? "bold" : "normal",
+                }}
               >
                 {tab.icon}
                 {tab.name}

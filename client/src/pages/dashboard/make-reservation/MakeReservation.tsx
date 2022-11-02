@@ -1,7 +1,7 @@
 import styles from "./MakeReservation.module.scss";
 
 const MakeReservation = () => {
-  return <div>Make Reservation</div>;
+  return <div className={styles["container"]}>Make Reservation</div>;
 };
 
 export default MakeReservation;
