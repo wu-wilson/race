@@ -29,6 +29,7 @@
 .complete {
   background-color: themes.$primary-color;
   border: 3px solid themes.$primary-color;
+  color: white;
 }
 
 .active {
@@ -64,4 +65,37 @@
   border-radius: 4px;
   background-color: themes.$primary-color;
   transition: ease-in width 200ms;
+}
+
+.description {
+  position: absolute;
+  top: calc(100% + 10px);
+  transition: ease-in color 200ms;
+  @include themes.themed() {
+    color: themes.t("font-color");
+  }
+}
+
+/* Tablets */
+@media only screen and (max-width: themes.$tablet-bp) {
+  .container {
+    font-size: 0.9rem;
+  }
+  .circle {
+    font-size: 0.9rem;
+    height: 0.9rem;
+    width: 0.9rem;
+  }
+}
+
+/* Smartphones */
+@media only screen and (max-width: themes.$smartphone-bp) {
+  .container {
+    font-size: 0.9rem;
+  }
+  .circle {
+    font-size: 0.8rem;
+    height: 0.8rem;
+    width: 0.8rem;
+  }
 }
