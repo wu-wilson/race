@@ -25,7 +25,7 @@
 .cal-container {
   width: 100%;
   height: 100%;
-  margin-top: calc(2rem + 10px);
+  margin-top: calc(3rem + 10px);
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -35,10 +35,45 @@
     flex-direction: column;
     .direction {
       margin-bottom: 1rem;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
     .selection {
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+    .key {
+      display: flex;
+      align-items: center;
+      white-space: pre-wrap;
+      margin-top: 1rem;
+      .selected-day,
+      .today,
+      .selectable {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 100%;
+        box-sizing: border-box;
+        transition: ease-in border-color 200ms, ease-in color 200ms;
+      }
+      .selected-day {
+        color: white;
+        background-color: themes.$primary-color;
+      }
+      .today {
+        color: themes.$secondary-color;
+        font-weight: bold;
+        @include themes.themed() {
+          border: 2px dashed themes.t("font-color");
+        }
+      }
+      .selectable {
+        @include themes.themed() {
+          color: themes.t("font-color");
+          border: 2px dashed themes.t("font-color");
+        }
+      }
     }
   }
 }

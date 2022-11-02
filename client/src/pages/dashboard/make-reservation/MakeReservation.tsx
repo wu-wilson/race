@@ -43,6 +43,18 @@ const MakeReservation = () => {
             <span className={styles["selection"]}>
               {day.format("MMMM D, YYYY (dddd)")}
             </span>
+            <span className={styles["key"]}>
+              <div className={styles["selected-day"]}>{day.format("D")}</div>{" "}
+              {`   =   Selected Date`}
+            </span>
+            <span className={styles["key"]}>
+              <div className={styles["today"]}>{moment().format("D")}</div>{" "}
+              {`   =   Today's Date`}
+            </span>
+            <span className={styles["key"]}>
+              <div className={styles["selectable"]}>{16}</div>{" "}
+              {`   =   Selectable Date`}
+            </span>
           </span>
           <Calendar selectedDay={day} setSelectedDay={setDay} />
         </div>

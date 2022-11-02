@@ -48,15 +48,9 @@ const Calendar = ({
       return styles["today"];
     }
     if (day.isBefore(monthStart, "day")) {
-      if (day.isSame(selectedDay, "day")) {
-        return styles["selectedBefore"];
-      }
       return styles["before"];
     }
     if (day.isAfter(monthEnd, "day")) {
-      if (day.isSame(selectedDay, "day")) {
-        return styles["selectedAfter"];
-      }
       return styles["after"];
     }
     if (day.isSame(selectedDay, "day")) {
