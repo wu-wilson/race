@@ -1,1 +1,25 @@
 @use "../../_themes.module.scss" as themes;
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-family: themes.$font-family;
+  transition: ease-in color 200ms;
+  @include themes.themed() {
+    color: themes.t("font-color");
+  }
+}
+
+.circle {
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  font-size: 1rem;
+  height: 1rem;
+  width: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid themes.$primary-color;
+}
