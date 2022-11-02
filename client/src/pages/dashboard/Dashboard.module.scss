@@ -1,7 +1,114 @@
+@use "../../_themes.module.scss" as themes;
+
 .container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: themes.$font-family;
+  transition: ease-in color 200ms;
+  @include themes.themed() {
+    color: themes.t("font-color");
+  }
+}
+
+.card {
+  height: auto;
+  width: 85%;
+  max-width: 1300px;
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+  justify-content: space-between;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: ease-in background-color 200ms;
+  @include themes.themed() {
+    background-color: darken(themes.t("card-bg"), 5);
+    box-shadow: themes.t("box-shadow");
+  }
+}
+
+.tabs {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
+  justify-content: flex-start;
+  .tab {
+    min-width: fit-content;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    transition: ease background-color 200ms;
+    &:hover {
+      cursor: pointer;
+      @include themes.themed() {
+        background-color: darken(themes.t("card-bg"), 10);
+      }
+    }
+    .tab-icon {
+      margin-right: 10px;
+    }
+  }
+  .selectedTab {
+    @include themes.themed() {
+      background-color: themes.t("card-bg");
+    }
+  }
+}
+
+.screen {
+  width: 100%;
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 20px;
+  @include themes.themed() {
+    background-color: themes.t("card-bg");
+  }
+}
+
+/* Tablets */
+@media only screen and (max-width: themes.$tablet-bp) {
+  .card {
+    width: 90%;
+    font-size: 0.9rem;
+    flex-direction: column;
+  }
+  .tabs {
+    flex-direction: row;
+    width: 100%;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+  }
+}
+
+/* Smartphones */
+@media only screen and (max-width: themes.$smartphone-bp) {
+  .card {
+    width: 90%;
+    font-size: 0.8rem;
+    flex-direction: column;
+  }
+  .tabs {
+    flex-direction: row;
+    width: 100%;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+  }
 }
