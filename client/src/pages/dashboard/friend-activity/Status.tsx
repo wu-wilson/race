@@ -9,6 +9,7 @@ const Status = () => {
     <VStack>
       <TabPanels>
         <TabPanel>Status: Basketball Court 1</TabPanel>
+        <TabPanel>Status: Tennis Court 3</TabPanel>
       </TabPanels>
     </VStack>
   ) : (
