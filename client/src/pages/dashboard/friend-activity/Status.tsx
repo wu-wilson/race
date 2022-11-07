@@ -8,7 +8,7 @@ const Status = () => {
   return friendList.length > 0 ? (
     <VStack>
       <TabPanels>
-        <TabPanel>shut the fuck you you have no friends pussy ass nerd</TabPanel>
+        <TabPanel>Status: Basketball Court 1</TabPanel>
       </TabPanels>
     </VStack>
   ) : (
