@@ -3,6 +3,7 @@ import moment, { Moment } from "moment";
 import StepProgressBar from "../../../components/step-progress-bar/StepProgressBar";
 import Step1 from "./step1/Step1";
 import Step2 from "./step2/Step2";
+import Step3 from "./step3/Step3";
 import styles from "./MakeReservation.module.scss";
 import { courtTypes, getCourts } from "./step2/courts";
 
@@ -63,6 +64,7 @@ const MakeReservation = () => {
           setEnd={setEnd}
         />
       ) : null}
+      {step === 3 ? <Step3 /> : null}
       <div className={styles["buttons"]}>
         <button onClick={prevStep} disabled={step === 1}>
           Prev

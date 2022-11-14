@@ -1,0 +1,24 @@
+@use "../../../../_themes.module.scss" as themes;
+
+.container {
+  width: 100%;
+  height: 100%;
+  margin-top: calc(3rem + 10px);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* Tablets */
+@media only screen and (max-width: themes.$tablet-bp) {
+  .container {
+    margin-top: calc(1.8rem + 10px);
+  }
+}
+
+/* Smartphones */
+@media only screen and (max-width: themes.$smartphone-bp) {
+  .container {
+    margin-top: calc(1.6rem + 10px);
+  }
+}
