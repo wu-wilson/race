@@ -9,10 +9,25 @@ import { courtTypes, getCourts } from "./step2/courts";
 const progressDescriptions = ["Date", "Time", "Party", "Review"];
 
 const MakeReservation = () => {
+  // Selected Day
+  const [day, setDay] = useState<Moment>(moment());
+
+  // Selected Court
+  const [courtType, setCourtType] = useState<string>(courtTypes[0]);
+  const [courtNum, setCourtNum] = useState<string>(getCourts(courtType)[0]);
+
+  // Selected Time
+  const [start, setStart] = useState<Moment | null>(null);
+  const [end, setEnd] = useState<Moment | null>(null);
+
   const [step, setStep] = useState<number>(1);
 
   const prevStep = () => {
     if (step > 1) {
+      if (step === 3) {
+        setStart(null);
+        setEnd(null);
+      }
       setStep(step - 1);
     }
   };
@@ -24,17 +39,6 @@ const MakeReservation = () => {
   };
 
   const submit = () => {};
-
-  // Selected Day
-  const [day, setDay] = useState<Moment>(moment());
-
-  // Selected Court
-  const [courtType, setCourtType] = useState<string>(courtTypes[0]);
-  const [courtNum, setCourtNum] = useState<string>(getCourts(courtType)[0]);
-
-  // Selected Time
-  const [start, setStart] = useState<Moment | null>(null);
-  const [end, setEnd] = useState<Moment | null>(null);
 
   return (
     <div className={styles["container"]}>
@@ -66,7 +70,12 @@ const MakeReservation = () => {
         {step === progressDescriptions.length ? (
           <button onClick={submit}>Submit</button>
         ) : (
-          <button onClick={nextStep}>Next</button>
+          <button
+            onClick={nextStep}
+            disabled={step === 2 && !start && !end ? true : false}
+          >
+            Next
+          </button>
         )}
       </div>
     </div>
