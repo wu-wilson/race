@@ -16,7 +16,7 @@ export const FriendContext = createContext<[Friend[], React.Dispatch<React.SetSt
 
 const FriendActivity = () => {
   const [friendList, setFriendList] = useState<Friend[]>([
-    {username: "John Doe", connected: false },
+    {username: "John Doe", connected: true },
     {username: "Jane Doe", connected: true },
   ]);
   return (
