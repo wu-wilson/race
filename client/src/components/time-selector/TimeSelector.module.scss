@@ -1,0 +1,83 @@
+@use "../../_themes.module.scss" as themes;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+  box-sizing: border-box;
+  height: fit-content;
+}
+
+.slot,
+.unavailable {
+  width: 40px;
+  min-height: 10px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.unavailable {
+  background-color: red;
+}
+
+.selected {
+  background-color: blue;
+}
+
+.zero {
+  @include themes.themed() {
+    border-top: 1px solid themes.t("font-color");
+    border-left: 1px solid themes.t("font-color");
+    border-right: 1px solid themes.t("font-color");
+  }
+}
+
+.fifteen {
+  @include themes.themed() {
+    border-left: 1px solid themes.t("font-color");
+    border-right: 1px solid themes.t("font-color");
+    border-bottom: 1px dotted themes.t("font-color");
+  }
+}
+
+.thirty-fortyfive {
+  @include themes.themed() {
+    border-left: 1px solid themes.t("font-color");
+    border-right: 1px solid themes.t("font-color");
+  }
+}
+
+.bottom {
+  @include themes.themed() {
+    border-bottom: 1px solid themes.t("font-color");
+  }
+}
+
+.time-label,
+.bottom-label {
+  position: absolute;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 0.6rem;
+  box-sizing: border-box;
+  height: 1rem;
+  right: 130%;
+  // disable highlight
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.time-label {
+  top: calc(-0.5rem - 1px);
+}
+
+.bottom-label {
+  bottom: calc(-0.5rem - 1px);
+}

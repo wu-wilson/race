@@ -5,8 +5,82 @@
   height: 100%;
   margin-top: calc(3rem + 10px);
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+}
+
+.dd-text {
+  display: flex;
+  flex-direction: column;
+  .text {
+    display: flex;
+    flex-direction: column;
+    .direction {
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    .subtext {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.key {
+  display: flex;
+  align-items: center;
+  white-space: pre-wrap;
+  margin-top: 1rem;
+}
+
+.dd-selector {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.dd-container {
+  display: flex;
+  margin-bottom: 2rem;
+  .dd {
+    display: flex;
+    flex-direction: column;
+    &:first-child {
+      margin-right: 1rem;
+    }
+  }
+}
+
+.slot,
+.unavailable,
+.selected {
+  width: 40px;
+  height: 10px;
+  position: relative;
+  box-sizing: border-box;
+  @include themes.themed() {
+    border: 1px solid themes.t("font-color");
+  }
+}
+
+.unavailable {
+  background-color: red;
+}
+
+.selected {
+  background-color: blue;
+}
+
+.ts-container {
+  height: 500px;
+  padding-right: 2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding-left: 100px;
+  display: flex;
+  align-items: flex-start;
 }
 
 /* Tablets */
@@ -14,11 +88,47 @@
   .container {
     margin-top: calc(1.8rem + 10px);
   }
+  .ts-container {
+    height: 400px;
+  }
 }
 
 /* Smartphones */
 @media only screen and (max-width: themes.$smartphone-bp) {
   .container {
     margin-top: calc(1.6rem + 10px);
+    overflow-y: auto;
+  }
+  .ts-container {
+    min-height: fit-content;
+    padding-right: 0;
+    margin-right: 100px;
+    overflow: visible;
+  }
+  .dd-text {
+    .text {
+      .direction,
+      .subtext,
+      .key {
+        display: none;
+      }
+    }
+  }
+  .dd-container {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    flex-direction: column;
+
+    .dd {
+      margin-bottom: 1rem;
+      &:first-child {
+        margin-right: 0rem;
+      }
+    }
+  }
+  .dd-selector {
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 2rem;
   }
 }

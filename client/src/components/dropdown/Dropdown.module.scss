@@ -15,6 +15,7 @@
     color: themes.t("font-color");
     background-color: themes.t("card-bg");
   }
+  z-index: 1;
   &:hover {
     cursor: pointer;
   }

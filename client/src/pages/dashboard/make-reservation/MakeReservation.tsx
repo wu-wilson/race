@@ -4,6 +4,7 @@ import StepProgressBar from "../../../components/step-progress-bar/StepProgressB
 import Step1 from "./step1/Step1";
 import Step2 from "./step2/Step2";
 import styles from "./MakeReservation.module.scss";
+import { courtTypes, getCourts } from "./step2/courts";
 
 const progressDescriptions = ["Date", "Time", "Party", "Review"];
 
@@ -24,7 +25,16 @@ const MakeReservation = () => {
 
   const submit = () => {};
 
+  // Selected Day
   const [day, setDay] = useState<Moment>(moment());
+
+  // Selected Court
+  const [courtType, setCourtType] = useState<string>(courtTypes[0]);
+  const [courtNum, setCourtNum] = useState<string>(getCourts(courtType)[0]);
+
+  // Selected Time
+  const [start, setStart] = useState<Moment | null>(null);
+  const [end, setEnd] = useState<Moment | null>(null);
 
   return (
     <div className={styles["container"]}>
@@ -36,7 +46,19 @@ const MakeReservation = () => {
         />
       </div>
       {step === 1 ? <Step1 day={day} setDay={setDay} /> : null}
-      {step === 2 ? <Step2 day={day} /> : null}
+      {step === 2 ? (
+        <Step2
+          day={day}
+          courtType={courtType}
+          setCourtType={setCourtType}
+          courtNum={courtNum}
+          setCourtNum={setCourtNum}
+          start={start}
+          setStart={setStart}
+          end={end}
+          setEnd={setEnd}
+        />
+      ) : null}
       <div className={styles["buttons"]}>
         <button onClick={prevStep} disabled={step === 1}>
           Prev
