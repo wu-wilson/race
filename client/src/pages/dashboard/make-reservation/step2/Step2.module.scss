@@ -76,6 +76,10 @@
   height: 500px;
   padding-right: 2rem;
   overflow-y: auto;
+  &::-webkit-scrollbar-track {
+    margin-top: calc(1rem + 10px);
+    margin-bottom: 10px;
+  }
   overflow-x: hidden;
   box-sizing: border-box;
   padding-left: 100px;
@@ -98,6 +102,10 @@
   .container {
     margin-top: calc(1.6rem + 10px);
     overflow-y: auto;
+    &::-webkit-scrollbar-track {
+      margin-top: 1.6rem;
+      margin-bottom: 10px;
+    }
   }
   .ts-container {
     min-height: fit-content;

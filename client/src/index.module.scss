@@ -1,3 +1,5 @@
+@use "./_themes.module.scss" as themes;
+
 body {
   margin: 0;
   padding: 0;
@@ -11,15 +13,14 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  @include themes.themed() {
+    background-color: themes.t("scroll-track");
+  }
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  @include themes.themed() {
+    background-color: themes.t("scroll-thumb");
+  }
 }

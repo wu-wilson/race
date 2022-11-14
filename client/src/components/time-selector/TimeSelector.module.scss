@@ -26,6 +26,7 @@
 }
 
 .zero {
+  transition: ease-in border 200ms;
   @include themes.themed() {
     border-top: 1px solid themes.t("font-color");
     border-left: 1px solid themes.t("font-color");
@@ -35,6 +36,7 @@
 
 .fifteen {
   @include themes.themed() {
+    transition: ease-in border 200ms;
     border-left: 1px solid themes.t("font-color");
     border-right: 1px solid themes.t("font-color");
     border-bottom: 1px dotted themes.t("font-color");
@@ -42,6 +44,7 @@
 }
 
 .thirty-fortyfive {
+  transition: ease-in border 200ms;
   @include themes.themed() {
     border-left: 1px solid themes.t("font-color");
     border-right: 1px solid themes.t("font-color");
@@ -49,6 +52,7 @@
 }
 
 .bottom {
+  transition: ease-in border 200ms;
   @include themes.themed() {
     border-bottom: 1px solid themes.t("font-color");
   }
