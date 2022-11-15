@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import { courtTypes, getCourts } from "./step2/courts";
 import moment, { Moment } from "moment";
 import StepProgressBar from "../../../components/step-progress-bar/StepProgressBar";
 import Step1 from "./step1/Step1";
 import Step2 from "./step2/Step2";
 import Step3 from "./step3/Step3";
+import Submission from "./submission/Submission";
 import styles from "./MakeReservation.module.scss";
-import { courtTypes, getCourts } from "./step2/courts";
 
 const progressDescriptions = ["Date", "Time", "Review"];
 
@@ -78,21 +79,32 @@ const MakeReservation = () => {
           end={end}
         />
       ) : null}
-      <div className={styles["buttons"]}>
-        <button onClick={prevStep} disabled={step === 1}>
-          Prev
-        </button>
-        {step === progressDescriptions.length ? (
-          <button onClick={submit}>Submit</button>
-        ) : (
-          <button
-            onClick={nextStep}
-            disabled={step === 2 && !start && !end ? true : false}
-          >
-            Next
+      {step === progressDescriptions.length + 1 && start && end ? (
+        <Submission
+          courtType={courtType}
+          courtNum={courtNum}
+          day={day}
+          start={start}
+          end={end}
+        />
+      ) : null}
+      {step <= progressDescriptions.length ? (
+        <div className={styles["buttons"]}>
+          <button onClick={prevStep} disabled={step === 1}>
+            Prev
           </button>
-        )}
-      </div>
+          {step === progressDescriptions.length ? (
+            <button onClick={submit}>Submit</button>
+          ) : (
+            <button
+              onClick={nextStep}
+              disabled={step === 2 && !start && !end ? true : false}
+            >
+              Next
+            </button>
+          )}
+        </div>
+      ) : null}
     </div>
   );
 };
