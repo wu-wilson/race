@@ -1,0 +1,47 @@
+@use "../../_themes.module.scss" as themes;
+
+.container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  border-left: 5px solid themes.$primary-color;
+  transition: ease-in background-color 200ms;
+  @include themes.themed() {
+    background-color: darken(themes.t("card-bg"), 5);
+    box-shadow: themes.t("box-shadow");
+  }
+}
+
+.description {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+  .icon {
+    margin-right: 1rem;
+  }
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  .description {
+    margin-bottom: 0;
+  }
+  .trash {
+    color: rgb(207, 72, 72);
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+/* Smartphones */
+@media only screen and (max-width: themes.$smartphone-bp) {
+  .container {
+    width: 270px;
+  }
+}

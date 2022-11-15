@@ -5,8 +5,17 @@
   height: 100%;
   margin-top: calc(3rem + 10px);
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+}
+
+.direction {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+.subtext {
+  margin-bottom: 2rem;
 }
 
 /* Tablets */

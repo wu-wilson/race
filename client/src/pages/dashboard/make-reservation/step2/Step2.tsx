@@ -88,7 +88,7 @@ const Step2 = ({
                 Select Your Reservation Time
               </span>
               <span className={styles["subtext"]}>
-                Click & drag to select a time slot
+                Click and drag to select a time slot
               </span>
               <div className={styles["dd-container"]}>
                 <div className={styles["dd"]}>

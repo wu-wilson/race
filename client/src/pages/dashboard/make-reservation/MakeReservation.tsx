@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import moment, { Moment } from "moment";
 import StepProgressBar from "../../../components/step-progress-bar/StepProgressBar";
 import Step1 from "./step1/Step1";
@@ -7,7 +7,7 @@ import Step3 from "./step3/Step3";
 import styles from "./MakeReservation.module.scss";
 import { courtTypes, getCourts } from "./step2/courts";
 
-const progressDescriptions = ["Date", "Time", "Party", "Review"];
+const progressDescriptions = ["Date", "Time", "Review"];
 
 const MakeReservation = () => {
   // Selected Day
@@ -25,10 +25,6 @@ const MakeReservation = () => {
 
   const prevStep = () => {
     if (step > 1) {
-      if (step === 3) {
-        setStart(null);
-        setEnd(null);
-      }
       setStep(step - 1);
     }
   };
@@ -39,7 +35,16 @@ const MakeReservation = () => {
     }
   };
 
-  const submit = () => {};
+  useEffect(() => {
+    if (step < 3 && start && end) {
+      setStart(null);
+      setEnd(null);
+    }
+  }, [step]);
+
+  const submit = () => {
+    setStep(progressDescriptions.length + 1);
+  };
 
   return (
     <div className={styles["container"]}>
@@ -64,7 +69,15 @@ const MakeReservation = () => {
           setEnd={setEnd}
         />
       ) : null}
-      {step === 3 ? <Step3 /> : null}
+      {step === 3 && start && end ? (
+        <Step3
+          courtType={courtType}
+          courtNum={courtNum}
+          day={day}
+          start={start}
+          end={end}
+        />
+      ) : null}
       <div className={styles["buttons"]}>
         <button onClick={prevStep} disabled={step === 1}>
           Prev
