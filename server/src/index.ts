@@ -28,6 +28,17 @@ database.connect((err) => {
 });
 
 // HTTP Requests
+// Get reservations
+app.get("reservations/:user", (req: Request, res: Response) => {
+  const QUERY = `SELECT * FROM reservation WHERE uid = ?`;
+  database.query(QUERY, [req.params.user], (err, result) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(result);
+    }
+  });
+});
 
 // Make a reservation
 app.post("/reserve", (req: Request, res: Response) => {
@@ -36,7 +47,6 @@ app.post("/reserve", (req: Request, res: Response) => {
     if (err) {
       return res.send(err);
     } else {
-      console.log("Reservation added.");
       return res.send(result);
     }
   });
