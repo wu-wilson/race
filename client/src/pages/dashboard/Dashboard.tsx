@@ -12,6 +12,8 @@ import CourtStatus from "./court-status/CourtStatus";
 import FriendActivity from "./friend-activity/FriendActivity";
 import themes from "../../_themes.module.scss";
 import styles from "./Dashboard.module.scss";
+import useSocketSetup from "./socket/useSocketSetup";
+import { UserAuth } from "../../context/AuthContext"
 
 type tab = {
   name: string;
@@ -45,7 +47,8 @@ const tabs: tab[] = [
 
 const Dashboard = () => {
   const [selectedTab, setSelectedTab] = useState<string>(tabs[0].name);
-
+  const user = UserAuth();
+  useSocketSetup(user, user!.email);
   return (
     <>
       <Navbar />
