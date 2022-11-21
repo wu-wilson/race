@@ -2,12 +2,15 @@ import { useState, useEffect } from "react";
 import { UserAuth } from "../../../context/AuthContext";
 import moment, { Moment } from "moment";
 import axios from "axios";
+import Reservation from "../../../components/reservation/Reservation";
 import styles from "./MyBookings.module.scss";
+import { start } from "repl";
+import LoaderMessage from "../../../components/loader-message/LoaderMessage";
 
 type booking = {
   courtType: string;
   courtNum: string;
-  day: string;
+  day: Moment;
   start: Moment;
   end: Moment;
 };
@@ -29,12 +32,12 @@ const MyBookings = () => {
             bookingList.push({
               courtType: data.courtType,
               courtNum: data.courtNum,
-              day: data.date,
+              day: moment(`${data.date}`, "DD MM YYYY"),
               start: moment(`${data.date} ${data.start}`, "DD MM YYYY h:mm a"),
               end: moment(`${data.date} ${data.end}`, "DD MM YYYY h:mm a"),
             });
-            setBookings(bookingList);
           }
+          setBookings(bookingList);
         })
         .catch((err) => {
           console.log(err);
@@ -49,24 +52,45 @@ const MyBookings = () => {
   }, [loading]);
 
   useEffect(() => {
-    if (bookings) {
+    if (bookings !== null) {
       setLoading(false);
     }
+  }, [JSON.stringify(bookings)]);
+
+  useEffect(() => {
+    console.log(bookings);
   }, [bookings]);
 
   return (
-    <div>
-      {bookings?.map((booking) => (
-        <div
-          key={
-            booking.day +
-            booking.start.format("h:mm a") +
-            booking.end.format("h:mm p")
-          }
-        >
-          {booking.start.format("h:mm a")}
-        </div>
-      ))}
+    <div className={styles["container"]}>
+      {loading ? (
+        <LoaderMessage message="Fetching bookings..." />
+      ) : (
+        <>
+          <div>Your Bookings</div>
+          {bookings
+            ? bookings.map((booking) => (
+                <div
+                  key={
+                    booking.day +
+                    booking.start.format("h:mm a") +
+                    booking.end.format("h:mm p")
+                  }
+                >
+                  <Reservation
+                    courtType={booking.courtType}
+                    courtNum={booking.courtNum}
+                    day={booking.day}
+                    start={booking.start}
+                    end={booking.end}
+                    enableDelete={true}
+                    setLoading={setLoading}
+                  />
+                </div>
+              ))
+            : null}
+        </>
+      )}
     </div>
   );
 };

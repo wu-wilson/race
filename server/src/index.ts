@@ -66,6 +66,18 @@ app.post("/reserve", (req: Request, res: Response) => {
   });
 });
 
+// Delete a specific reservation for a user
+app.delete("/delete/reservation/:user", (req: Request, res: Response) => {
+  const QUERY = `DELETE FROM reservation WHERE uid = ? AND date = "${req.body.date}" AND start = "${req.body.start}" AND end = "${req.body.end}" AND courtType = "${req.body.courtType}" AND courtNum = "${req.body.courtNum}"`;
+  database.query(QUERY, [req.params.user], (err, result) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(result);
+    }
+  });
+});
+
 // Listen
 app.listen(process.env.PORT, () => {
   console.log("listening on port 4000...");

@@ -4,7 +4,9 @@ import {
   FaClock,
   FaRegTrashAlt,
 } from "react-icons/fa";
+import { UserAuth } from "../../context/AuthContext";
 import { Moment } from "moment";
+import axios from "axios";
 import styles from "./Reservation.module.scss";
 
 const Reservation = ({
@@ -14,6 +16,7 @@ const Reservation = ({
   start,
   end,
   enableDelete,
+  setLoading,
 }: {
   courtType: string;
   courtNum: string;
@@ -21,7 +24,36 @@ const Reservation = ({
   start: Moment;
   end: Moment;
   enableDelete?: boolean;
+  setLoading?: (val: boolean) => void;
 }) => {
+  const auth = UserAuth();
+
+  const onDelete = async () => {
+    if (auth) {
+      await axios
+        .delete(
+          `${process.env.REACT_APP_API_URL}/delete/reservation/${auth.uid}`,
+          {
+            data: {
+              date: day.format("DD MM YYYY"),
+              start: start.format("h:mm a"),
+              end: end.format("h:mm a"),
+              courtType: courtType,
+              courtNum: courtNum,
+            },
+          }
+        )
+        .then(() => {
+          if (setLoading) {
+            setLoading(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   return (
     <div className={styles["container"]}>
       <span className={styles["description"]}>
@@ -44,7 +76,11 @@ const Reservation = ({
           </span>
         </span>
         {enableDelete ? (
-          <FaRegTrashAlt className={styles["trash"]} size={15} />
+          <FaRegTrashAlt
+            className={styles["trash"]}
+            size={15}
+            onClick={() => onDelete()}
+          />
         ) : null}
       </div>
     </div>
