@@ -33,7 +33,7 @@ const Step2 = ({
 }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
-  const [unavailable, setUnavailable] = useState<timeSlot[]>([]);
+  const [unavailable, setUnavailable] = useState<timeSlot[] | null>(null);
 
   const updateReservedSlots = async () => {
     await axios
@@ -68,7 +68,9 @@ const Step2 = ({
   }, [loading]);
 
   useEffect(() => {
-    setLoading(false);
+    if (unavailable) {
+      setLoading(false);
+    }
   }, [JSON.stringify(unavailable)]);
 
   useEffect(() => {
@@ -79,7 +81,7 @@ const Step2 = ({
     <div className={styles["container"]}>
       {loading ? (
         <LoaderMessage message={"Fetching time slots..."} />
-      ) : (
+      ) : unavailable ? (
         <div className={styles["dd-selector"]}>
           <div className={styles["dd-text"]}>
             <span className={styles["text"]}>
@@ -131,7 +133,7 @@ const Step2 = ({
             />
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
