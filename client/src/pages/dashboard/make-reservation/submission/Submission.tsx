@@ -26,7 +26,7 @@ const Submission = ({
 }) => {
   const user = UserAuth();
 
-  const [submitting, setSubmitting] = useState<boolean>(true);
+  const [submitting, setSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
   const makeReservation = async () => {
@@ -52,7 +52,13 @@ const Submission = ({
   };
 
   useEffect(() => {
-    makeReservation();
+    if (submitting) {
+      makeReservation();
+    }
+  }, [submitting]);
+
+  useEffect(() => {
+    setSubmitting(true);
   }, []);
 
   return (
