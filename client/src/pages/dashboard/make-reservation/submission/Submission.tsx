@@ -1,5 +1,9 @@
 import { Moment } from "moment";
 import { useEffect, useState } from "react";
+import { AiFillCheckCircle } from "react-icons/ai";
+import { BiError } from "react-icons/bi";
+import { UserAuth } from "../../../../context/AuthContext";
+import axios from "axios";
 import LoaderMessage from "../../../../components/loader-message/LoaderMessage";
 import styles from "./Submission.module.scss";
 
@@ -9,16 +13,43 @@ const Submission = ({
   day,
   start,
   end,
+  setSelectedTab,
+  reset,
 }: {
   courtType: string;
   courtNum: string;
   day: Moment;
   start: Moment;
   end: Moment;
+  setSelectedTab: (tab: string) => void;
+  reset: () => void;
 }) => {
-  const [submitting, setSubmitting] = useState<boolean>(true);
+  const user = UserAuth();
 
-  const makeReservation = () => {};
+  const [submitting, setSubmitting] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
+
+  const makeReservation = async () => {
+    if (user) {
+      await axios
+        .post(`${process.env.REACT_APP_API_URL}/reserve`, {
+          uid: user.uid,
+          courtType: courtType,
+          courtNum: courtNum,
+          date: day.format("DD MM YYYY"),
+          start: start.format("h:mm a"),
+          end: end.format("h:mm a"),
+        })
+        .then(() => {
+          setSubmitting(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setError(true);
+          setSubmitting(false);
+        });
+    }
+  };
 
   useEffect(() => {
     makeReservation();
@@ -26,7 +57,47 @@ const Submission = ({
 
   return (
     <div className={styles["container"]}>
-      {submitting ? <LoaderMessage message={"Making Reservation..."} /> : null}
+      {submitting ? (
+        <LoaderMessage message={"Making Reservation..."} />
+      ) : error ? (
+        <>
+          <div className={styles["text"]}>
+            <BiError className={styles["icon"]} size={25} />
+            Oops, something went wrong!
+          </div>
+          <div>An unknown error occurred. Please try again later.</div>
+          <div className={styles["buttons"]}>
+            <button
+              className={styles["button"]}
+              onClick={() => setSelectedTab("My Bookings")}
+            >
+              View Bookings
+            </button>
+            <button className={styles["button"]} onClick={() => reset()}>
+              Try Again
+            </button>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className={styles["text"]}>
+            <AiFillCheckCircle className={styles["icon"]} size={25} /> Booking
+            Success!
+          </div>
+          <div>Your reservation has been added to our system.</div>
+          <div className={styles["buttons"]}>
+            <button
+              className={styles["button"]}
+              onClick={() => setSelectedTab("My Bookings")}
+            >
+              View Booking
+            </button>
+            <button className={styles["button"]} onClick={() => reset()}>
+              Make Another
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

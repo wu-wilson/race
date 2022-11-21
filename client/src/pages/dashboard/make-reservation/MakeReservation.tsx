@@ -10,7 +10,11 @@ import styles from "./MakeReservation.module.scss";
 
 const progressDescriptions = ["Date", "Time", "Review"];
 
-const MakeReservation = () => {
+const MakeReservation = ({
+  setSelectedTab,
+}: {
+  setSelectedTab: (tab: string) => void;
+}) => {
   // Selected Day
   const [day, setDay] = useState<Moment>(moment());
 
@@ -45,6 +49,15 @@ const MakeReservation = () => {
 
   const submit = () => {
     setStep(progressDescriptions.length + 1);
+  };
+
+  const reset = () => {
+    setDay(moment());
+    setCourtType(courtTypes[0]);
+    setCourtNum(getCourts(courtType)[0]);
+    setStart(null);
+    setEnd(null);
+    setStep(1);
   };
 
   return (
@@ -86,6 +99,8 @@ const MakeReservation = () => {
           day={day}
           start={start}
           end={end}
+          setSelectedTab={setSelectedTab}
+          reset={reset}
         />
       ) : null}
       {step <= progressDescriptions.length ? (

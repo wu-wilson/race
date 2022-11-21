@@ -28,18 +28,21 @@ database.connect((err) => {
 });
 
 // HTTP Requests
-app.get("/getUsers", (req: Request, res: Response) => {
-  const SAMPLE_GET_QUERY = `SELECT * FROM users`;
-  database.query(SAMPLE_GET_QUERY, (err, result) => {
+
+// Make a reservation
+app.post("/reserve", (req: Request, res: Response) => {
+  const QUERY = `INSERT INTO reservation (uid, courtType, courtNum, date, start, end) VALUES ("${req.body.uid}", "${req.body.courtType}", "${req.body.courtNum}", "${req.body.date}", "${req.body.start}", "${req.body.end}")`;
+  database.query(QUERY, (err, result) => {
     if (err) {
       return res.send(err);
     } else {
+      console.log("Reservation added.");
       return res.send(result);
     }
   });
 });
 
-// Listen on port 4000
-app.listen(4000, () => {
+// Listen
+app.listen(process.env.PORT, () => {
   console.log("listening on port 4000...");
 });

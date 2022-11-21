@@ -19,32 +19,32 @@ type tab = {
   component: ReactElement;
 };
 
-// Tab name must be unique
-const tabs: tab[] = [
-  {
-    name: "My Bookings",
-    icon: <FaClock className={styles["tab-icon"]} size={15} />,
-    component: <MyBookings />,
-  },
-  {
-    name: "Make Reservation",
-    icon: <FaCalendarCheck className={styles["tab-icon"]} size={15} />,
-    component: <MakeReservation />,
-  },
-  {
-    name: "Court Status",
-    icon: <FaBasketballBall className={styles["tab-icon"]} size={15} />,
-    component: <CourtStatus />,
-  },
-  {
-    name: "Friend Activity",
-    icon: <FaUserFriends className={styles["tab-icon"]} size={15} />,
-    component: <FriendActivity />,
-  },
-];
-
 const Dashboard = () => {
-  const [selectedTab, setSelectedTab] = useState<string>(tabs[0].name);
+  const [selectedTab, setSelectedTab] = useState<string>("My Bookings");
+
+  // Tab name must be unique
+  const tabs: tab[] = [
+    {
+      name: "My Bookings",
+      icon: <FaClock className={styles["tab-icon"]} size={15} />,
+      component: <MyBookings />,
+    },
+    {
+      name: "Make Reservation",
+      icon: <FaCalendarCheck className={styles["tab-icon"]} size={15} />,
+      component: <MakeReservation setSelectedTab={setSelectedTab} />,
+    },
+    {
+      name: "Court Status",
+      icon: <FaBasketballBall className={styles["tab-icon"]} size={15} />,
+      component: <CourtStatus />,
+    },
+    {
+      name: "Friend Activity",
+      icon: <FaUserFriends className={styles["tab-icon"]} size={15} />,
+      component: <FriendActivity />,
+    },
+  ];
 
   return (
     <>
