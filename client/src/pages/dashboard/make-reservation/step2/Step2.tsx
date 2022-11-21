@@ -4,11 +4,11 @@ import { courtTypes, getCourts } from "./courts";
 import TimeSelector, {
   timeSlot,
 } from "../../../../components/time-selector/TimeSelector";
+import axios from "axios";
+import moment from "moment";
 import Dropdown from "../../../../components/dropdown/Dropdown";
 import LoaderMessage from "../../../../components/loader-message/LoaderMessage";
 import styles from "./Step2.module.scss";
-
-import moment from "moment";
 
 const Step2 = ({
   day,
@@ -35,31 +35,30 @@ const Step2 = ({
 
   const [unavailable, setUnavailable] = useState<timeSlot[]>([]);
 
-  const updateReservedSlots = () => {
-    setUnavailable([
-      {
-        start: moment(
-          `${day.clone().format("DD MM YYYY")} 9:15 am`,
-          "DD MM YYYY h:mm a"
-        ),
-        end: moment(
-          `${day.clone().format("DD MM YYYY")} 10:15 am`,
-          "DD MM YYYY h:mm a"
-        ),
-        available: false,
-      },
-      {
-        start: moment(
-          `${day.clone().format("DD MM YYYY")} 1:00 pm`,
-          "DD MM YYYY h:mm a"
-        ),
-        end: moment(
-          `${day.clone().format("DD MM YYYY")} 2:30 pm`,
-          "DD MM YYYY h:mm a"
-        ),
-        available: false,
-      },
-    ]);
+  const updateReservedSlots = async () => {
+    await axios
+      .get(
+        `${
+          process.env.REACT_APP_API_URL
+        }/booked/${courtType}/${courtNum}/${day.format("DD")}/${day.format(
+          "MM"
+        )}/${day.format("YYYY")}`
+      )
+      .then((res) => {
+        let reserved: timeSlot[] = [];
+        for (let i = 0; i < res.data.length; i++) {
+          const data = res.data[i];
+          reserved.push({
+            start: moment(`${data.date} ${data.start}`, "DD MM YYYY h:mm a"),
+            end: moment(`${data.date} ${data.end}`, "DD MM YYYY h:mm a"),
+            available: false,
+          });
+        }
+        setUnavailable(reserved);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -70,7 +69,7 @@ const Step2 = ({
 
   useEffect(() => {
     setLoading(false);
-  }, [unavailable]);
+  }, [JSON.stringify(unavailable)]);
 
   useEffect(() => {
     setLoading(true);

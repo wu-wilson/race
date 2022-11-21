@@ -27,9 +27,23 @@ database.connect((err) => {
   }
 });
 
-// HTTP Requests
-// Get reservations
-app.get("reservations/:user", (req: Request, res: Response) => {
+// Get reservations for a specific court on a given day
+app.get(
+  "/booked/:courtType/:courtNum/:day/:month/:year",
+  (req: Request, res: Response) => {
+    const QUERY = `SELECT * FROM reservation WHERE courtType = "${req.params.courtType}" AND courtNum = "${req.params.courtNum}" AND date = "${req.params.day} ${req.params.month} ${req.params.year}"`;
+    database.query(QUERY, (err, result) => {
+      if (err) {
+        return res.send(err);
+      } else {
+        return res.send(result);
+      }
+    });
+  }
+);
+
+// Get bookings for a user
+app.get("/bookings/:user", (req: Request, res: Response) => {
   const QUERY = `SELECT * FROM reservation WHERE uid = ?`;
   database.query(QUERY, [req.params.user], (err, result) => {
     if (err) {
