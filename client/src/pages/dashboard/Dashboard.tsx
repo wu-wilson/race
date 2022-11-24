@@ -27,7 +27,7 @@ const Dashboard = () => {
     {
       name: "My Bookings",
       icon: <FaClock className={styles["tab-icon"]} size={15} />,
-      component: <MyBookings />,
+      component: <MyBookings setSelectedTab={setSelectedTab} />,
     },
     {
       name: "Make Reservation",

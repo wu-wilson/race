@@ -28,6 +28,8 @@ $themes: (
     cal-invalid: lightgrey,
     scroll-track: #f1f1f1,
     scroll-thumb: rgb(170, 170, 170),
+    btoggle-default: lightgrey,
+    btoggle-selected: $secondary-color,
   ),
   dark: (
     card-bg: rgb(49, 49, 58),
@@ -39,6 +41,8 @@ $themes: (
     cal-invalid: grey,
     scroll-track: rgb(170, 170, 170),
     scroll-thumb: #f1f1f1,
+    btoggle-default: grey,
+    btoggle-selected: $primary-color,
   ),
 );
 

@@ -54,7 +54,11 @@ const Step2 = ({
             available: false,
           });
         }
-        setUnavailable(reserved);
+        if (reserved.length === 0 && unavailable?.length === 0) {
+          setLoading(false);
+        } else {
+          setUnavailable(reserved);
+        }
       })
       .catch((err) => {
         console.log(err);

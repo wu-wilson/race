@@ -1,0 +1,37 @@
+@use "../../_themes.module.scss" as themes;
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.left-tab,
+.right-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  padding: 10px 20px;
+  transition: ease-in border 200ms, ease-in color 200ms;
+  @include themes.themed() {
+    color: themes.t("btoggle-default");
+    border: 2px solid themes.t("btoggle-default");
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.selected {
+  font-weight: bold;
+  @include themes.themed() {
+    color: themes.t("btoggle-selected");
+    border: 2px solid themes.t("btoggle-selected");
+    background-color: rgba(
+      red(themes.t("btoggle-selected")),
+      green(themes.t("btoggle-selected")),
+      blue(themes.t("btoggle-selected")),
+      10%
+    );
+  }
+}
