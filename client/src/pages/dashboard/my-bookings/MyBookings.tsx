@@ -3,6 +3,7 @@ import { UserAuth } from "../../../context/AuthContext";
 import { BsFillEmojiFrownFill } from "react-icons/bs";
 import { FaRegTrashAlt } from "react-icons/fa";
 import moment, { Moment } from "moment";
+import Error from "../../../components/error/Error";
 import BinaryToggle from "../../../components/binary-toggle/BinaryToggle";
 import LoaderMessage from "../../../components/loader-message/LoaderMessage";
 import axios from "axios";
@@ -26,6 +27,7 @@ const MyBookings = ({
 
   const [bookings, setBookings] = useState<booking[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
 
   const filterValues: string[] = ["Date & Time", "Court Type"];
 
@@ -89,9 +91,12 @@ const MyBookings = ({
             });
           }
           setBookings(orderBookings(bookingList));
+          setError(false);
         })
         .catch((err) => {
           console.log(err);
+          setError(true);
+          setBookings([]);
         });
     }
   };
@@ -118,6 +123,8 @@ const MyBookings = ({
     <div className={styles["container"]}>
       {loading ? (
         <LoaderMessage message="Fetching bookings..." />
+      ) : error ? (
+        <Error />
       ) : bookings ? (
         bookings.length === 0 ? (
           <div className={styles["no-reservations"]}>
