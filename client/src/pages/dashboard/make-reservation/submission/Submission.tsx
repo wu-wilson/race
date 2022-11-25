@@ -41,6 +41,7 @@ const Submission = ({
           end: end.format("h:mm a"),
         })
         .then(() => {
+          setError(false);
           setSubmitting(false);
         })
         .catch((err) => {

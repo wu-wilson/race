@@ -69,7 +69,9 @@ const MakeReservation = ({
           descriptions={progressDescriptions}
         />
       </div>
-      {step === 1 ? <Step1 day={day} setDay={setDay} /> : null}
+      {step === 1 ? (
+        <Step1 day={day} setDay={setDay} setSelectedTab={setSelectedTab} />
+      ) : null}
       {step === 2 ? (
         <Step2
           day={day}
