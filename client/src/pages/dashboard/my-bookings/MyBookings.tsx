@@ -96,7 +96,7 @@ const MyBookings = ({
         .catch((err) => {
           console.log(err);
           setError(true);
-          setBookings([]);
+          setLoading(false);
         });
     }
   };

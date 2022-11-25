@@ -4,6 +4,7 @@ import { courtTypes, getCourts } from "./courts";
 import TimeSelector, {
   timeSlot,
 } from "../../../../components/time-selector/TimeSelector";
+import Error from "../../../../components/error/Error";
 import axios from "axios";
 import moment from "moment";
 import Dropdown from "../../../../components/dropdown/Dropdown";
@@ -32,7 +33,7 @@ const Step2 = ({
   setEnd: (val: Moment | null) => void;
 }) => {
   const [loading, setLoading] = useState<boolean>(false);
-
+  const [error, setError] = useState<boolean>(false);
   const [unavailable, setUnavailable] = useState<timeSlot[] | null>(null);
 
   const updateReservedSlots = async () => {
@@ -58,10 +59,13 @@ const Step2 = ({
           setLoading(false);
         } else {
           setUnavailable(reserved);
+          setError(false);
         }
       })
       .catch((err) => {
         console.log(err);
+        setError(true);
+        setLoading(false);
       });
   };
 
@@ -85,6 +89,8 @@ const Step2 = ({
     <div className={styles["container"]}>
       {loading ? (
         <LoaderMessage message={"Fetching time slots..."} />
+      ) : error ? (
+        <Error />
       ) : unavailable ? (
         <div className={styles["dd-selector"]}>
           <div className={styles["dd-text"]}>

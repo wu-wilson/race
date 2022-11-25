@@ -3,6 +3,7 @@ import { courtTypes, getCourts } from "./step2/courts";
 import { UserAuth } from "../../../context/AuthContext";
 import { BsStackOverflow } from "react-icons/bs";
 import moment, { Moment } from "moment";
+import Error from "../../../components/error/Error";
 import axios from "axios";
 import StepProgressBar from "../../../components/step-progress-bar/StepProgressBar";
 import LoaderMessage from "../../../components/loader-message/LoaderMessage";
@@ -68,6 +69,7 @@ const MakeReservation = ({
 
   const [loading, setLoading] = useState<boolean>(true);
   const [maxReached, setMaxReached] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   const checkNumReservations = async () => {
     if (user) {
@@ -79,10 +81,12 @@ const MakeReservation = ({
           } else {
             setMaxReached(false);
           }
+          setError(false);
           setLoading(false);
         })
         .catch((err) => {
           console.log(err);
+          setError(true);
           setLoading(false);
         });
     }
@@ -104,6 +108,8 @@ const MakeReservation = ({
     <div className={styles["container"]}>
       {loading ? (
         <LoaderMessage message="Checking your reservation limit..." />
+      ) : error ? (
+        <Error />
       ) : maxReached ? (
         <div className={styles["max"]}>
           <div className={styles["text"]}>

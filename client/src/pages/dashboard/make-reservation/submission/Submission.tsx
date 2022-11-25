@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { BiError } from "react-icons/bi";
 import { UserAuth } from "../../../../context/AuthContext";
+import Error from "../../../../components/error/Error";
 import axios from "axios";
 import LoaderMessage from "../../../../components/loader-message/LoaderMessage";
 import styles from "./Submission.module.scss";
@@ -67,24 +68,7 @@ const Submission = ({
       {submitting ? (
         <LoaderMessage message={"Making Reservation..."} />
       ) : error ? (
-        <>
-          <div className={styles["text"]}>
-            <BiError className={styles["icon"]} size={25} />
-            Oops, something went wrong!
-          </div>
-          <div>An unknown error occurred. Please try again later.</div>
-          <div className={styles["buttons"]}>
-            <button
-              className={styles["button"]}
-              onClick={() => setSelectedTab("My Bookings")}
-            >
-              View Bookings
-            </button>
-            <button className={styles["button"]} onClick={() => reset()}>
-              Try Again
-            </button>
-          </div>
-        </>
+        <Error />
       ) : (
         <>
           <div className={styles["text"]}>
