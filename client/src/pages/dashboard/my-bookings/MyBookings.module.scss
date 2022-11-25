@@ -79,10 +79,48 @@
 .bookings {
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  height: 70%;
   .booking {
     margin-bottom: 2rem;
+    padding-right: 2rem;
     &:last-child {
       margin-bottom: 0;
+    }
+  }
+}
+
+/* Smartphones */
+@media only screen and (max-width: themes.$smartphone-bp) {
+  .container {
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: auto;
+    &::-webkit-scrollbar-track {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .text {
+    .note,
+    .direction,
+    .bt-header,
+    .title {
+      display: none;
+    }
+    margin-top: 2rem;
+  }
+
+  .bookings {
+    height: fit-content;
+    overflow-y: visible;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    .booking {
+      margin-bottom: 2rem;
+      padding: 0;
     }
   }
 }
