@@ -54,6 +54,30 @@ app.get("/bookings/:user", (req: Request, res: Response) => {
   });
 });
 
+// Get a user's friends
+app.get("/getFriends/:user", (req: Request, res: Response) => {
+  const QUERY = `SELECT fUID FROM friends WHERE uid = "${req.params.user}"`;
+  database.query(QUERY, (err, result) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(result);
+    }
+  });
+});
+
+// Add to a user's friends list
+app.post("/addFriend", (req: Request, res: Response) => {
+  const QUERY = `INSERT INTO friends VALUES ("${req.body.uid}", "${req.body.fUID}")`;
+  database.query(QUERY, (err, result) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(result);
+    }
+  });
+});
+
 // Make a reservation
 app.post("/reserve", (req: Request, res: Response) => {
   const QUERY = `INSERT INTO reservation (uid, courtType, courtNum, date, start, end) VALUES ("${req.body.uid}", "${req.body.courtType}", "${req.body.courtNum}", "${req.body.date}", "${req.body.start}", "${req.body.end}")`;
