@@ -66,6 +66,7 @@ const Navbar = () => {
 
   return (
     <div className={styles["container"]}>
+      <div className={styles["left-items"]}>{user ? user.email : ""}</div>
       <div className={styles["links"]}>
         {links.map((link, index) => (
           <div

@@ -11,6 +11,8 @@ import {
 } from "react-icons/hi";
 import Navbar from "../../components/navbar/Navbar";
 import styles from "./Register.module.scss";
+import { collection, getDocs, addDoc } from 'firebase/firestore';
+import { db } from "../../context/firebase";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -26,7 +28,12 @@ const Register = () => {
     e.preventDefault();
     if (checkEmail(email) === "valid" && checkPassword(password) === "valid") {
       await createUserWithEmailAndPassword(auth, email, password)
-        .then(() => {
+        .then((user) => {
+          const usersCollectionRef = collection(db, "users");
+          const createUser = async (user : any) => {
+            await addDoc(usersCollectionRef, {uid: user.user.uid, email: user.user.email});
+          }
+          createUser(user);
           navigate("/dashboard");
         })
         .catch((e: FirebaseError) => {

@@ -83,6 +83,13 @@
   }
 }
 
+.left-items {
+  align-items: center;
+  position: absolute;
+  display: flex;
+  left: 2rem;
+}
+
 .hamburger {
   position: relative;
   display: none;
