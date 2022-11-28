@@ -78,7 +78,4 @@ app.delete("/delete/reservation/:user", (req: Request, res: Response) => {
   });
 });
 
-// Listen
-app.listen(process.env.PORT, () => {
-  console.log("listening on port 4000...");
-});
+export default app;
