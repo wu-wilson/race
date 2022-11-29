@@ -106,12 +106,9 @@ const TimeSelector = ({
               ? styles["fifteen"]
               : styles["thirty-fortyfive"]
           } ${index === slots.length - 1 ? styles["bottom"] : ""}`}
-          onMouseDown={(e) => handleMouseDown(e, slot)}
-          onMouseUp={() => handleMouseUp(slot)}
-          onMouseEnter={(e) => handleHover(e, slot)}
-          onTouchStart={(e) => handleMouseDown(e, slot)}
-          onTouchEnd={() => handleMouseUp(slot)}
-          onTouchMove={(e) => handleHover(e, slot)}
+          onPointerDown={(e) => handleMouseDown(e, slot)}
+          onPointerUp={() => handleMouseUp(slot)}
+          onPointerEnter={(e) => handleHover(e, slot)}
         >
           {index % 4 === 0 ? (
             <span className={styles["time-label"]}>
