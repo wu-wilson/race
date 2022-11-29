@@ -1,0 +1,73 @@
+@use "../../_themes.module.scss" as themes;
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 40%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 40px;
+  justify-content: space-between;
+  border-radius: 20px;
+  transition: ease-in background-color 200ms;
+  font-family: themes.$font-family;
+  @include themes.themed() {
+    background-color: themes.t("card-bg");
+    color: themes.t("font-color");
+  }
+}
+
+.text {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  .icon {
+    margin-right: 10px;
+    color: themes.$tertiary-color;
+  }
+}
+
+.subtext {
+  margin-bottom: 3rem;
+}
+
+.button {
+  font-family: themes.$font-family;
+  padding: 15px 20px;
+  width: fit-content;
+  border-radius: 10px;
+  border: none;
+  background-color: themes.$primary-color;
+  color: white;
+  transition: ease-in background-color 200ms;
+  &:hover {
+    cursor: pointer;
+    background-color: themes.$secondary-color;
+  }
+}
+
+/* Tablets */
+@media only screen and (max-width: themes.$tablet-bp) {
+  .card {
+    width: 60%;
+    font-size: 0.9rem;
+  }
+}
+
+/* Smartphones */
+@media only screen and (max-width: themes.$smartphone-bp) {
+  .card {
+    width: 85%;
+    font-size: 0.8rem;
+  }
+}

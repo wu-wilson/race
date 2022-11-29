@@ -78,6 +78,30 @@ app.delete("/delete/reservation/:user", (req: Request, res: Response) => {
   });
 });
 
+// Check into a court
+app.post("/check-in", (req: Request, res: Response) => {
+  const QUERY = `INSERT INTO courtStatus (courtType, courtNum) VALUES ("${req.body.courtType}", "${req.body.courtNum}")`;
+  database.query(QUERY, (err, result) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+// Check out of a court
+app.delete("/check-out", (req: Request, res: Response) => {
+  const QUERY = `DELETE FROM courtStatus WHERE courtType = "${req.body.courtType}" AND courtNum = "${req.body.courtNum}" LIMIT 1`;
+  database.query(QUERY, (err, result) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 // Listen
 app.listen(process.env.PORT, () => {
   console.log("listening on port 4000...");

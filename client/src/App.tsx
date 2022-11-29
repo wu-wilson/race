@@ -5,6 +5,8 @@ import ResetPassword from "./pages/reset-password/ResetPassword";
 import Register from "./pages/register/Register";
 import Verify from "./pages/verify/Verify";
 import Dashboard from "./pages/dashboard/Dashboard";
+import CheckIn from "./pages/check-in/CheckIn";
+import CheckOut from "./pages/check-out/CheckOut";
 import Error from "./pages/error/Error";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Particles from "./components/particles/Particles";
@@ -31,6 +33,15 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/verify" element={<Verify />} />
           <Route path="/resetpassword" element={<ResetPassword />} />
+          {/* 
+          The paths "/check-in" and "/check-out" will render the CheckIn component, which expects 
+          search params courtType and courtNum. Examples:
+
+          /check-in?courtType=Tennis&courtNum=1
+          /check-out?courtType=Tennis&courtNum=1
+          */}
+          <Route path="/check-in" element={<CheckIn />} />
+          <Route path="/check-out" element={<CheckOut />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>

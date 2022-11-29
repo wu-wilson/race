@@ -116,7 +116,7 @@ const MakeReservation = ({
             <BsStackOverflow className={styles["icon"]} size={25} />
             Too many bookings
           </div>
-          It seems like you have more than 5 many bookings.
+          It seems like you have more than 5 bookings.
           <button
             className={styles["button"]}
             onClick={() => setSelectedTab("My Bookings")}

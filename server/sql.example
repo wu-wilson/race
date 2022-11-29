@@ -10,7 +10,7 @@ CREATE TABLE reservation (
     end VARCHAR(255)
 );
 
-SELECT * FROM reservation;
-
-DROP TABLE reservation;
-DROP DATABASE your_database_name;
+CREATE TABLE courtStatus (
+	courtType VARCHAR(255),
+    courtNum VARCHAR(255)
+);
