@@ -1,4 +1,4 @@
-import { useState, useEffect, MouseEvent } from "react";
+import { useState, useEffect, MouseEvent, TouchEvent } from "react";
 import { buildSelector } from "./hours";
 import moment, { Moment } from "moment";
 import styles from "./TimeSelector.module.scss";
@@ -30,7 +30,10 @@ const TimeSelector = ({
 
   const [clicking, setClicking] = useState<boolean>(false);
 
-  const handleMouseDown = (e: MouseEvent<HTMLDivElement>, slot: timeSlot) => {
+  const handleMouseDown = (
+    e: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>,
+    slot: timeSlot
+  ) => {
     if (slot.available) {
       const blocks = document.querySelectorAll('[id^="slot "]');
       for (let i = 0; i < blocks.length; i++) {
@@ -66,7 +69,10 @@ const TimeSelector = ({
     }
   };
 
-  const handleHover = (e: MouseEvent<HTMLDivElement>, slot: timeSlot) => {
+  const handleHover = (
+    e: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>,
+    slot: timeSlot
+  ) => {
     e.preventDefault();
     if (!clicking) {
       return;
@@ -100,9 +106,12 @@ const TimeSelector = ({
               ? styles["fifteen"]
               : styles["thirty-fortyfive"]
           } ${index === slots.length - 1 ? styles["bottom"] : ""}`}
-          onPointerDown={(e) => handleMouseDown(e, slot)}
-          onPointerUp={() => handleMouseUp(slot)}
-          onPointerEnter={(e) => handleHover(e, slot)}
+          onMouseDown={(e) => handleMouseDown(e, slot)}
+          onMouseUp={() => handleMouseUp(slot)}
+          onMouseEnter={(e) => handleHover(e, slot)}
+          onTouchStart={(e) => handleMouseDown(e, slot)}
+          onTouchEnd={() => handleMouseUp(slot)}
+          onTouchMove={(e) => handleHover(e, slot)}
         >
           {index % 4 === 0 ? (
             <span className={styles["time-label"]}>
