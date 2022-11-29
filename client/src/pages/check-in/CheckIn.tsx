@@ -28,6 +28,7 @@ const CheckIn = () => {
           courtNum: courtNum,
         })
         .then(() => {
+          setError(false);
           setLoading(false);
         })
         .catch((err) => {

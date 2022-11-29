@@ -30,6 +30,7 @@ const CheckOut = () => {
           },
         })
         .then(() => {
+          setError(false);
           setLoading(false);
         })
         .catch((err) => {
@@ -57,7 +58,7 @@ const CheckOut = () => {
     <div className={styles["container"]}>
       <div className={styles["card"]}>
         {loading ? (
-          <LoaderMessage message={"Checking In..."} />
+          <LoaderMessage message={"Checking Out..."} />
         ) : error ? (
           <Error />
         ) : (
