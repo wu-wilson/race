@@ -32,6 +32,7 @@ const TimeSelector = ({
 
   const handleMouseDown = (e: PointerEvent<HTMLDivElement>, slot: timeSlot) => {
     if (slot.available) {
+      (e.target as HTMLDivElement).releasePointerCapture(e.pointerId);
       const blocks = document.querySelectorAll('[id^="slot "]');
       for (let i = 0; i < blocks.length; i++) {
         blocks[i].classList.remove(styles["selected"]);
