@@ -1,4 +1,4 @@
-import { useState, useEffect, MouseEvent, TouchEvent } from "react";
+import { useState, useEffect, PointerEvent } from "react";
 import { buildSelector } from "./hours";
 import moment, { Moment } from "moment";
 import styles from "./TimeSelector.module.scss";
@@ -30,10 +30,7 @@ const TimeSelector = ({
 
   const [clicking, setClicking] = useState<boolean>(false);
 
-  const handleMouseDown = (
-    e: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>,
-    slot: timeSlot
-  ) => {
+  const handleMouseDown = (e: PointerEvent<HTMLDivElement>, slot: timeSlot) => {
     if (slot.available) {
       const blocks = document.querySelectorAll('[id^="slot "]');
       for (let i = 0; i < blocks.length; i++) {
@@ -69,10 +66,7 @@ const TimeSelector = ({
     }
   };
 
-  const handleHover = (
-    e: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>,
-    slot: timeSlot
-  ) => {
+  const handleHover = (e: PointerEvent<HTMLDivElement>, slot: timeSlot) => {
     e.preventDefault();
     if (!clicking) {
       return;
