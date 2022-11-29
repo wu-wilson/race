@@ -42,7 +42,8 @@ const App = () => {
           */}
           <Route path="/check-in" element={<CheckIn />} />
           <Route path="/check-out" element={<CheckOut />} />
-          <Route path="*" element={<Error />} />
+          <Route path="/error" element={<Error />} />
+          <Route path="*" element={<Navigate to="/error" />} />
         </Routes>
       </BrowserRouter>
     </div>
