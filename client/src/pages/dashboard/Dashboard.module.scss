@@ -45,6 +45,12 @@
     align-items: center;
     white-space: nowrap;
     transition: ease-in background-color 200ms;
+    &:first-child {
+      border-top-left-radius: 20px;
+    }
+    &:last-child {
+      border-top-right-radius: 20px;
+    }
     // Reserve space for bolded text
     &:after {
       display: block;
