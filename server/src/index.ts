@@ -106,3 +106,5 @@ app.delete("/check-out", (req: Request, res: Response) => {
 app.listen(process.env.PORT, () => {
   console.log("listening on port 4000...");
 });
+
+export default app;
