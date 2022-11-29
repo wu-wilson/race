@@ -37,8 +37,8 @@ const App = () => {
           The paths "/check-in" and "/check-out" will render the CheckIn component, which expects 
           search params courtType and courtNum. Examples:
 
-          /check-in?courtType=Tennis&courtNum=1
-          /check-out?courtType=Tennis&courtNum=1
+          /check-in/?courtType=Tennis&courtNum=1
+          /check-out/?courtType=Tennis&courtNum=1
           */}
           <Route path="/check-in" element={<CheckIn />} />
           <Route path="/check-out" element={<CheckOut />} />
