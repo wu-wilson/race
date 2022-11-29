@@ -15,7 +15,6 @@
     color: themes.t("font-color");
     background-color: themes.t("card-bg");
   }
-  z-index: 1;
   &:hover {
     cursor: pointer;
   }
@@ -26,13 +25,14 @@
     position: absolute;
     height: fit-content;
     box-sizing: border-box;
-    left: -1px;
+    left: -2px;
     border: 2px solid themes.$primary-color;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     transition: ease-in background-color 200ms;
+    z-index: 2;
     @include themes.themed() {
       background-color: themes.t("card-bg");
     }
