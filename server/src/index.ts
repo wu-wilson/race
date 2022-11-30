@@ -85,7 +85,7 @@ app.post("/check-in", (req: Request, res: Response) => {
     if (err) {
       return res.send(err);
     } else {
-      res.send(result);
+      return res.send(result);
     }
   });
 });
@@ -97,7 +97,7 @@ app.delete("/check-out", (req: Request, res: Response) => {
     if (err) {
       return res.send(err);
     } else {
-      res.send(result);
+      return res.send(result);
     }
   });
 });
