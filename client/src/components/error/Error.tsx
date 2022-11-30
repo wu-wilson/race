@@ -11,7 +11,9 @@ const Error = () => {
         <BiError className={styles["icon"]} size={25} />
         Oops, something went wrong!
       </div>
-      <div>An unknown error occurred. Please try again later.</div>
+      <div className={styles["subtext"]}>
+        An unknown error occurred. Please try again later.
+      </div>
       <button className={styles["button"]} onClick={() => navigate("/contact")}>
         Contact Support
       </button>
