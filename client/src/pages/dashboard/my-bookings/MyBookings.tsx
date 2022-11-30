@@ -174,7 +174,9 @@ const MyBookings = ({
                   key={
                     booking.day +
                     booking.start.format("h:mm a") +
-                    booking.end.format("h:mm p")
+                    booking.end.format("h:mm p") +
+                    booking.courtType +
+                    booking.courtNum
                   }
                 >
                   <Reservation

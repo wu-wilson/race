@@ -55,7 +55,7 @@ const Step2 = ({
             available: false,
           });
         }
-        if (reserved.length === 0 && unavailable?.length === 0) {
+        if (JSON.stringify(reserved) === JSON.stringify(unavailable)) {
           setLoading(false);
         } else {
           setUnavailable(reserved);
