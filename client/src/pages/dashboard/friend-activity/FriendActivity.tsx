@@ -1,3 +1,6 @@
+
+
+
 import styles from "./FriendActivity.module.scss";
 import React, { createContext, useState, useEffect } from "react";
 import {ChakraProvider, Grid, GridItem, Tabs} from '@chakra-ui/react';
@@ -35,6 +38,7 @@ const FriendActivity = () => {
   const getUIDs = async (user : any) => {
     await axios.get(`${process.env.REACT_APP_API_URL}/getFriends/${user.uid}`).then((res) => {
       setError(false);
+      setLoading(true);
       let userIDList = [];
       for (let i = 0; i < res.data.length; i++) {
         userIDList.push(res.data[i].fUID);
@@ -48,16 +52,10 @@ const FriendActivity = () => {
   };
 
   useEffect(() => {
-    if (uids !== null) {
-      setLoading(false);
-    }
-  }, [uids]);
-
-  useEffect(() => {
     if (loading) {
       getUIDs(user);
     }
-  }, [loading])
+  }, [loading]);
 
   const getFriends = async (uids : any) => {
     setError(false);
