@@ -7,19 +7,24 @@ import { db } from "../../../context/firebase";
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import LoaderMessage from "../../../components/loader-message/LoaderMessage";
+import Error from "../../../components/error/Error";
 
 
 const AddFriend = ({isOpen, onClose}: any) => {
   const user = UserAuth();
   const usersCollectionRef = collection(db, "users");
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const data = await getDocs(usersCollectionRef);
-      // console.log(data.docs.map((doc) => ({...doc.data()})));
-    };
-    getUsers();
-  }, []);
+  // const [loading, setLoading] = useState<boolean>(true);
+  // const [error, setError] = useState<boolean>(false);
+  //
+  // const getUsers = async () => {
+  //   const data = await getDocs(usersCollectionRef);
+  // };
+  //
+  // useEffect(() => {
+  //   getUsers();
+  // }, []);
 
 
 
