@@ -131,10 +131,10 @@ const CourtStatus = () => {
             className={styles["status"]}
             style={{
               color:
-                numPeople && capacity[courtType] >= numPeople ? "red" : "green",
+                numPeople && capacity[courtType] <= numPeople ? "red" : "green",
             }}
           >{`${courtType} ${courtNum} is ${
-            numPeople && capacity[courtType] >= numPeople ? "Full" : "Not Full"
+            numPeople && capacity[courtType] <= numPeople ? "Full" : "Not Full"
           }`}</div>
           <div className={styles["status-card"]}>
             <div className={styles["description"]}>
