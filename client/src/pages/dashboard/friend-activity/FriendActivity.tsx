@@ -1,6 +1,3 @@
-
-
-
 import styles from "./FriendActivity.module.scss";
 import React, { createContext, useState, useEffect } from "react";
 import {ChakraProvider, Grid, GridItem, Tabs} from '@chakra-ui/react';
@@ -19,21 +16,22 @@ export type Friend = {
   connected: boolean;
 };
 
+export type Uid = {
+  uid: string
+}
+
 export const FriendContext = createContext<[Friend[], React.Dispatch<React.SetStateAction<Friend[]>>]>([[], () => null]);
+export const UIDContext = createContext<[Uid[], React.Dispatch<React.SetStateAction<Uid[]>>]>([[], () => null]);
 
 const FriendActivity = () => {
   const user = UserAuth();
 
-  const [uids, setUIDs] = useState<string[] | null>([]);
+  const [uids, setUIDs] = useState<Uid[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
   const usersCollectionRef = collection(db, "users");
-
-  const [friendList, setFriendList] = useState<Friend[]>([
-    {username: "John Doe", connected: true },
-    {username: "Jane Doe", connected: true },
-  ]);
+  const [friendList, setFriendList] = useState<Friend[]>([]);
 
   const getUIDs = async (user : any) => {
     await axios.get(`${process.env.REACT_APP_API_URL}/getFriends/${user.uid}`).then((res) => {
@@ -41,7 +39,7 @@ const FriendActivity = () => {
       setLoading(true);
       let userIDList = [];
       for (let i = 0; i < res.data.length; i++) {
-        userIDList.push(res.data[i].fUID);
+        userIDList.push({uid: res.data[i].fUID});
       };
       setUIDs(userIDList);
     }).catch((err) => {
@@ -63,7 +61,7 @@ const FriendActivity = () => {
     let userFriendsList: Friend[] = [];
     for (let i = 0; i < uids.length; i++) {
       try {
-        const snapshot = await getDocs(query(usersCollectionRef, where("uid", "==", uids[i])));
+        const snapshot = await getDocs(query(usersCollectionRef, where("uid", "==", uids[i].uid)));
         const queryFriend = snapshot.docs.map((doc) => ({...doc.data()}))[0];
         userFriendsList.push({username: queryFriend.email, connected: true})
       } catch (err) {
@@ -93,14 +91,16 @@ const FriendActivity = () => {
       <Error />
     ) : (
       <FriendContext.Provider value={ [friendList, setFriendList] }>
-        <Grid templateColumns="repeat(10, 1fr)" h="100vh" as={Tabs}>
-          <GridItem colSpan={3} borderRight="1px solid grey">
-            <Sidebar/>
-          </GridItem>
-          <GridItem colSpan={7}>
-            <Status />
-          </GridItem>
-        </Grid>
+        <UIDContext.Provider value={ [uids, setUIDs] }>
+          <Grid templateColumns="repeat(10, 1fr)" h="100vh" as={Tabs}>
+            <GridItem colSpan={3} borderRight="1px solid grey">
+              <Sidebar/>
+            </GridItem>
+            <GridItem colSpan={7}>
+              <Status />
+            </GridItem>
+          </Grid>
+        </UIDContext.Provider>
       </FriendContext.Provider>
     )}
     </ChakraProvider>
