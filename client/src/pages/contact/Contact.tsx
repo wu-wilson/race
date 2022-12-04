@@ -25,9 +25,8 @@ const Contact = () => {
             Any Feedback?
           </div>
           <p className={styles["subtext"]}>
-            Our team would love to hear your thoughts about our platform! If you
-            have any questions, suggetions, or criticisms, please let us know by
-            shooting us an email!
+            We would love to hear your thoughts about our platform! If you have
+            any suggestions or criticisms, send us an email!
           </p>
           <button className={styles["button"]} onClick={mailToFeedback}>
             Email Us
