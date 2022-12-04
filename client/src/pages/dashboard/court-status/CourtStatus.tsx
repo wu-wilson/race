@@ -47,8 +47,10 @@ const CourtStatus = () => {
             if (moment(a.end, "h:mm a").isBefore(moment(b.end, "h:mm a"))) {
               return -1;
             }
-            if (moment(a.end, "h:mm a").isAfter(moment(b.end, "h:mm a")))
-              return 0;
+            if (moment(a.end, "h:mm a").isAfter(moment(b.end, "h:mm a"))) {
+              return 1;
+            }
+            return 0;
           }
         );
         let close: string = "unset";
