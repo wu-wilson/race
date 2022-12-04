@@ -8,6 +8,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import CheckIn from "./pages/check-in/CheckIn";
 import CheckOut from "./pages/check-out/CheckOut";
 import Contact from "./pages/contact/Contact";
+import About from "./pages/about/About";
 import Error from "./pages/error/Error";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Particles from "./components/particles/Particles";
@@ -44,6 +45,7 @@ const App = () => {
           <Route path="/check-in" element={<CheckIn />} />
           <Route path="/check-out" element={<CheckOut />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
           <Route path="/error" element={<Error />} />
           <Route path="*" element={<Navigate to="/error" />} />
         </Routes>

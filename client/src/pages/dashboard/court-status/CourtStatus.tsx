@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { courtTypes, getCourts } from "../make-reservation/step2/courts";
-import { MdEmojiPeople } from "react-icons/md";
+import { GiAmericanFootballPlayer } from "react-icons/gi";
+import { BsFillPeopleFill } from "react-icons/bs";
+import { capacity } from "../make-reservation/step2/courts";
 import axios from "axios";
 import LoaderMessage from "../../../components/loader-message/LoaderMessage";
 import Error from "../../../components/error/Error";
@@ -85,10 +87,14 @@ const CourtStatus = () => {
           </div>
           <div className={styles["status-card"]}>
             <div className={styles["description"]}>
-              <MdEmojiPeople className={styles["icon"]} size={25} />
+              <GiAmericanFootballPlayer className={styles["icon"]} size={25} />
               {`${numPeople} player${
                 numPeople && numPeople > 1 ? "s" : ""
               } on the court`}
+            </div>
+            <div className={styles["description"]}>
+              <BsFillPeopleFill className={styles["icon"]} size={25} />
+              {`Max ${capacity[courtType]} Person Capacity`}
             </div>
           </div>
         </>

@@ -2,10 +2,20 @@ type courtConfig = {
   [courtType: string]: number;
 };
 
+type courtCapacity = {
+  [courtType: string]: number;
+};
+
 const config: courtConfig = {
   Tennis: 4,
   Auxiliary: 2,
   Arena: 4,
+};
+
+export const capacity: courtCapacity = {
+  Tennis: 4,
+  Auxiliary: 10,
+  Arena: 10,
 };
 
 const getCourtTypes = () => {
