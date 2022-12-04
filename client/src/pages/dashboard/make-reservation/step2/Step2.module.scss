@@ -42,7 +42,7 @@
 
 .dd-container {
   display: flex;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   .dd {
     display: flex;
     flex-direction: column;
@@ -73,7 +73,7 @@
 }
 
 .ts-container {
-  height: 400px;
+  height: 380px;
   padding-right: 2rem;
   overflow-y: auto;
   touch-action: none;
