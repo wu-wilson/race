@@ -25,7 +25,7 @@ const About = () => {
           </div>
           <p className={styles["subtext"]}>
             Hey! We're Wilson Wu, Anay Roge, Nate Burbage, Susanna Spooner,
-            Brett Anwar, and Alec Chapman, the creators of RACE.
+            Brett Anwar, Jonathan Kim, and Alec Chapman, the creators of RACE.
           </p>
           <p className={styles["subtext"]}>
             Our project is open source, so feel free to check us out on GitHub!
