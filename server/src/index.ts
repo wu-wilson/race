@@ -103,18 +103,15 @@ app.delete("/check-out", (req: Request, res: Response) => {
 });
 
 // Get the number of people checked into a court
-app.get(
-  "/court-status/count/:courtType/:courtNum",
-  (req: Request, res: Response) => {
-    const QUERY = `SELECT COUNT(*) AS num_people FROM courtStatus WHERE courtType = "${req.params.courtType}" AND courtNum = "${req.params.courtNum}" `;
-    database.query(QUERY, (err, result) => {
-      if (err) {
-        return res.send(err);
-      } else {
-        return res.send(result);
-      }
-    });
-  }
-);
+app.get("/count/:courtType/:courtNum", (req: Request, res: Response) => {
+  const QUERY = `SELECT COUNT(*) AS num_people FROM courtStatus WHERE courtType = "${req.params.courtType}" AND courtNum = "${req.params.courtNum}"`;
+  database.query(QUERY, (err, result) => {
+    if (err) {
+      return res.send(err);
+    } else {
+      return res.send(result);
+    }
+  });
+});
 
 export default app;
