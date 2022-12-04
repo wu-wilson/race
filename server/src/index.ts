@@ -113,14 +113,19 @@ app.delete("/check-out", (req: Request, res: Response) => {
 
 // Get the number of people checked into a court
 app.get("/count/:courtType/:courtNum", (req: Request, res: Response) => {
-  const QUERY = `SELECT COUNT(*) AS num_people FROM courtStatus WHERE courtType = "${req.params.courtType}" AND courtNum = "${req.params.courtNum}"`;
-  pool.query(QUERY, (err, result) => {
-    if (err) {
-      return res.send(err);
-    } else {
-      return res.send(result);
-    }
-  });
+  try {
+    const QUERY = `SELECT COUNT(*) AS num_people FROM courtStatus WHERE courtType = "${req.params.courtType}" AND courtNum = "${req.params.courtNum}"`;
+    pool.query(QUERY, (err, result) => {
+      if (err) {
+        return res.send(err);
+      } else {
+        return res.send(result);
+      }
+    });
+  } catch (err) {
+    console.error(err);
+    return res.send(err);
+  }
 });
 
 export default app;

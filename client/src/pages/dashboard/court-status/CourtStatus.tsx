@@ -86,7 +86,7 @@ const CourtStatus = () => {
   };
 
   useEffect(() => {
-    if (numPeople !== null && closestReservation !== null) {
+    if (numPeople && closestReservation) {
       setLoading(false);
     }
   }, [numPeople, closestReservation]);
