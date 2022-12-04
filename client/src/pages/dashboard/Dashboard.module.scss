@@ -48,9 +48,6 @@
     &:first-child {
       border-top-left-radius: 20px;
     }
-    &:last-child {
-      border-top-right-radius: 20px;
-    }
     // Reserve space for bolded text
     &:after {
       display: block;
@@ -126,6 +123,9 @@
     overflow-x: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    &:last-child {
+      border-top-right-radius: 20px;
+    }
     &::-webkit-scrollbar {
       width: 0;
       height: 0;
