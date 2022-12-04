@@ -40,9 +40,8 @@ const Contact = () => {
             Keeping It Green
           </div>
           <p className={styles["subtext"]}>
-            Our team is committed to keeping our recreational centers green and
-            sustainable. If you notice any non-eco friendly practices on our
-            courts, please let us know.
+            We are committed to keeping our recreational centers green. Notice
+            any non-eco friendly practices? Let us know.
           </p>
           <p className={styles["subtext"]}>
             You can visit{" "}
@@ -54,7 +53,7 @@ const Contact = () => {
             >
               Emory's Office of Sustainability website
             </a>{" "}
-            to learn more about our mission and sustainability initiatives.
+            to learn more about our sustainability initiatives.
           </p>
           <button className={styles["button"]} onClick={mailToSustainability}>
             Sustainability Team
