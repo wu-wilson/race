@@ -1,0 +1,105 @@
+@use "../../_themes.module.scss" as themes;
+
+.container {
+  height: calc(100vh - 4.5rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: themes.$font-family;
+  transition: ease-in color 200ms;
+  @include themes.themed() {
+    color: themes.t("font-color");
+  }
+}
+
+.card {
+  height: auto;
+  width: 40%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 40px;
+  justify-content: space-between;
+  border-radius: 20px;
+  transition: ease-in background-color 200ms;
+  @include themes.themed() {
+    background-color: themes.t("card-bg");
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  white-space: pre-wrap;
+  position: relative;
+  font-weight: bold;
+  .icon {
+    position: absolute;
+    left: -50px;
+    color: themes.$tertiary-color;
+  }
+}
+
+.subtext {
+  font-size: 0.9rem;
+}
+
+.link {
+  &:active {
+    color: themes.$primary-color;
+  }
+  &:visited {
+    color: themes.$primary-color;
+    outline: none;
+  }
+  &:hover {
+    color: themes.$secondary-color;
+  }
+}
+
+.button {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  background-color: themes.$primary-color;
+  font-weight: bold;
+  color: white;
+  transition: ease background-color 200ms;
+  font-family: themes.$font-family;
+  &:hover {
+    cursor: pointer;
+    background-color: themes.$secondary-color;
+  }
+}
+
+/* Tablets */
+@media only screen and (max-width: themes.$tablet-bp) {
+  .card {
+    width: 70%;
+  }
+  .title {
+    font-size: 1.1rem;
+  }
+  .subtext {
+    font-size: 0.8rem;
+  }
+}
+
+/* Smartphones */
+@media only screen and (max-width: themes.$smartphone-bp) {
+  .card {
+    width: 90%;
+  }
+  .title {
+    font-size: 1.1rem;
+  }
+  .subtext {
+    font-size: 0.8rem;
+  }
+}
