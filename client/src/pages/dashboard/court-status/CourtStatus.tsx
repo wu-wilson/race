@@ -3,6 +3,7 @@ import { courtTypes, getCourts } from "../make-reservation/step2/courts";
 import { FaCalendarCheck, FaCalendarTimes } from "react-icons/fa";
 import { BsFillPeopleFill, BsFillPersonFill } from "react-icons/bs";
 import { capacity } from "../make-reservation/step2/courts";
+import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 import LoaderMessage from "../../../components/loader-message/LoaderMessage";
@@ -11,6 +12,8 @@ import Dropdown from "../../../components/dropdown/Dropdown";
 import styles from "./CourtStatus.module.scss";
 
 const CourtStatus = () => {
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
@@ -109,58 +112,80 @@ const CourtStatus = () => {
         <Error />
       ) : (
         <>
-          <div className={styles["dropdowns"]}>
-            <div className={styles["dd"]}>
-              Type
-              <Dropdown
-                options={courtTypes}
-                value={courtType}
-                setValue={setCourtType}
-                width={150}
-              />
+          <div className={styles["text"]}>
+            <div className={styles["title"]}>Court Status</div>
+            <div className={styles["dropdowns"]}>
+              <div className={styles["dd"]}>
+                Type
+                <Dropdown
+                  options={courtTypes}
+                  value={courtType}
+                  setValue={setCourtType}
+                  width={150}
+                />
+              </div>
+              <div className={styles["dd"]}>
+                Court #
+                <Dropdown
+                  options={getCourts(courtType)}
+                  value={courtNum}
+                  setValue={setCourtNum}
+                  width={150}
+                />
+              </div>
             </div>
-            <div className={styles["dd"]}>
-              Court #
-              <Dropdown
-                options={getCourts(courtType)}
-                value={courtNum}
-                setValue={setCourtNum}
-                width={150}
-              />
+            <div className={styles["note"]}>
+              Court Status is dependent on our{" "}
+              <span className={styles["highlight"]}>QR system</span>
             </div>
+            <div className={styles["note"]}>
+              Notice anything inaccurate? Send us an email
+            </div>
+            <button
+              className={styles["button"]}
+              onClick={() => navigate("/contact")}
+            >
+              Contact Us
+            </button>
           </div>
-          <div
-            className={styles["status"]}
-            style={{
-              color:
-                numPeople && capacity[courtType] <= numPeople ? "red" : "green",
-            }}
-          >{`${courtType} ${courtNum} is ${
-            numPeople && capacity[courtType] <= numPeople ? "Full" : "Not Full"
-          }`}</div>
-          <div className={styles["status-card"]}>
-            <div className={styles["description"]}>
-              <BsFillPersonFill className={styles["icon"]} size={15} />
-              {`${numPeople} player${
-                (numPeople && numPeople > 1) || numPeople === 0 ? "s" : ""
-              } on the court`}
-            </div>
-            <div className={styles["description"]}>
-              <BsFillPeopleFill className={styles["icon"]} size={15} />
-              {`Max ${capacity[courtType]} person capacity`}
-            </div>
-            <div className={styles["description"]}>
-              {closestReservation === "unset" ? (
-                <FaCalendarTimes className={styles["icon"]} size={15} />
-              ) : (
-                <FaCalendarCheck className={styles["icon"]} size={15} />
-              )}
-              {closestReservation === "unset"
-                ? "Court is currently unreserved"
-                : `Reserved until ${moment(
-                    closestReservation,
-                    "DD MM YYYY h:mm a"
-                  ).format("h:mm a")}`}
+          <div className={styles["content"]}>
+            <div
+              className={styles["status"]}
+              style={{
+                color:
+                  numPeople && capacity[courtType] <= numPeople
+                    ? "red"
+                    : "green",
+              }}
+            >{`${courtType} ${courtNum} is ${
+              numPeople && capacity[courtType] <= numPeople
+                ? "Full"
+                : "Not Full"
+            }`}</div>
+            <div className={styles["status-card"]}>
+              <div className={styles["description"]}>
+                <BsFillPersonFill className={styles["icon"]} size={15} />
+                {`${numPeople} player${
+                  (numPeople && numPeople > 1) || numPeople === 0 ? "s" : ""
+                } on the court`}
+              </div>
+              <div className={styles["description"]}>
+                <BsFillPeopleFill className={styles["icon"]} size={15} />
+                {`Max ${capacity[courtType]} person capacity`}
+              </div>
+              <div className={styles["description"]}>
+                {closestReservation === "unset" ? (
+                  <FaCalendarTimes className={styles["icon"]} size={15} />
+                ) : (
+                  <FaCalendarCheck className={styles["icon"]} size={15} />
+                )}
+                {closestReservation === "unset"
+                  ? "Court is currently unreserved"
+                  : `Reserved until ${moment(
+                      closestReservation,
+                      "DD MM YYYY h:mm a"
+                    ).format("h:mm a")}`}
+              </div>
             </div>
           </div>
         </>
