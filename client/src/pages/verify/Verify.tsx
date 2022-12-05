@@ -33,7 +33,7 @@ const Verify = () => {
       await user?.reload().then(() => {
         if (user && !user.emailVerified) {
           checkVerification();
-        } else {
+        } else if (user && user.emailVerified){
           navigate("/dashboard");
         }
       });
