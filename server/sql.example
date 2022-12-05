@@ -14,3 +14,11 @@ CREATE TABLE courtStatus (
 	courtType VARCHAR(255),
     courtNum VARCHAR(255)
 );
+
+CREATE TABLE friends (
+	person1 VARCHAR(255),
+	person2 VARCHAR(255),
+    fUID VARCHAR(255),
+	requestStatus VARCHAR(255),
+    PRIMARY KEY(person1, person2, requestStatus)
+);

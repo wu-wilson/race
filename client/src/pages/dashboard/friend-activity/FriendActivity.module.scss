@@ -1,1 +1,10 @@
 @use "../../../_themes.module.scss" as themes;
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

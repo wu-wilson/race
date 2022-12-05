@@ -5,11 +5,13 @@ import {
   FaClock,
   FaUserFriends,
 } from "react-icons/fa";
+import { BsPersonPlusFill } from "react-icons/bs";
 import Navbar from "../../components/navbar/Navbar";
 import MyBookings from "./my-bookings/MyBookings";
 import MakeReservation from "./make-reservation/MakeReservation";
 import CourtStatus from "./court-status/CourtStatus";
 import FriendActivity from "./friend-activity/FriendActivity";
+import FriendRequest from "./friend-requests/FriendRequest";
 import themes from "../../_themes.module.scss";
 import styles from "./Dashboard.module.scss";
 
@@ -43,6 +45,11 @@ const Dashboard = () => {
       name: "Friend Activity",
       icon: <FaUserFriends className={styles["tab-icon"]} size={15} />,
       component: <FriendActivity />,
+    },
+    {
+      name: "Friend Requests",
+      icon: <BsPersonPlusFill className={styles["tab-icon"]} size={15} />,
+      component: <FriendRequest />,
     },
   ];
 

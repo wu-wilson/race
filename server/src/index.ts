@@ -180,4 +180,88 @@ app.get("/count/:courtType/:courtNum", (req: Request, res: Response) => {
   });
 });
 
+// Send a friend request
+app.post("/send-request", (req: Request, res: Response) => {
+  const QUERY = `INSERT INTO friends (person1, person2, fUID, requestStatus) VALUES ("${req.body.person1}", "${req.body.person2}", "${req.body.fUID}", "pending")`;
+  pool.getConnection((err, connection) => {
+    if (err) {
+      connection.release();
+      console.log(err);
+    } else {
+      connection.query(QUERY, (err, result) => {
+        if (err) {
+          connection.release();
+          return res.send(err);
+        } else {
+          connection.release();
+          return res.send(result);
+        }
+      });
+    }
+  });
+});
+
+// Get all pending friend requests for a user
+app.get("/get-requests/:email", (req: Request, res: Response) => {
+  const QUERY = `SELECT person1 FROM friends WHERE person2 = ? AND requestStatus = "pending"`;
+  pool.getConnection((err, connection) => {
+    if (err) {
+      connection.release();
+      console.log(err);
+    } else {
+      connection.query(QUERY, [req.params.email], (err, result) => {
+        if (err) {
+          connection.release();
+          return res.send(err);
+        } else {
+          connection.release();
+          return res.send(result);
+        }
+      });
+    }
+  });
+});
+
+// Delete a pending friend request
+app.delete("/delete-request", (req: Request, res: Response) => {
+  const QUERY = `DELETE FROM friends WHERE person1 = "${req.body.person1}" AND person2 = "${req.body.person2}" AND requestStatus = "pending"`;
+  pool.getConnection((err, connection) => {
+    if (err) {
+      connection.release();
+      console.log(err);
+    } else {
+      connection.query(QUERY, (err, result) => {
+        if (err) {
+          connection.release();
+          return res.send(err);
+        } else {
+          connection.release();
+          return res.send(result);
+        }
+      });
+    }
+  });
+});
+
+// Accept a pending friend request
+app.put("/accept-request", (req: Request, res: Response) => {
+  const QUERY = `UPDATE friends SET requestStatus = "accepted" WHERE person1 = "${req.body.person1}" AND person2 = "${req.body.person2}" AND requestStatus = "pending"`;
+  pool.getConnection((err, connection) => {
+    if (err) {
+      connection.release();
+      console.log(err);
+    } else {
+      connection.query(QUERY, (err, result) => {
+        if (err) {
+          connection.release();
+          return res.send(err);
+        } else {
+          connection.release();
+          return res.send(result);
+        }
+      });
+    }
+  });
+});
+
 export default app;
