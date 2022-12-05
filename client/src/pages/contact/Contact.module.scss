@@ -48,6 +48,7 @@
 }
 
 .link {
+  color: themes.$primary-color;
   &:active {
     color: themes.$primary-color;
   }
