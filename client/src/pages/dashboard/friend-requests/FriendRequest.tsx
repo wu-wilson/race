@@ -232,7 +232,7 @@ const FriendRequest = () => {
             <input
               type="submit"
               value="Send Request"
-              className={styles["button"]}
+              className={styles["send-button"]}
             />
           </form>
           <div className={styles["requests-container"]}>

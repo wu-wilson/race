@@ -37,17 +37,17 @@
     }
     .email {
       height: 34px;
-      width: 100%;
+      width: 300px;
       padding-left: 30px;
       box-sizing: border-box;
       border: 1.5px solid black;
       border-radius: 5px;
+      transition: ease-in background-color 200ms, ease-in border 200ms,
+        ease-in color 200ms;
       &:focus {
         outline: none;
         border: 2px solid themes.$secondary-color;
       }
-      transition: ease-in background-color 200ms, ease-in border 200ms,
-        ease-in color 200ms;
       @include themes.themed() {
         background-color: themes.t("input-bg");
         border: 1.5px solid themes.t("input-bg");
@@ -55,10 +55,12 @@
       }
     }
   }
-  .button {
+  .send-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     font-family: themes.$font-family;
     padding: 15px 20px;
-    width: fit-content;
     border-radius: 10px;
     border: none;
     background-color: themes.$primary-color;
@@ -107,6 +109,7 @@
     cursor: pointer;
   }
 }
+
 .minus {
   color: rgb(207, 72, 72);
 }
@@ -146,7 +149,12 @@
   }
   .form {
     align-items: center;
-    .button {
+    .input-container {
+      .email {
+        width: 270px;
+      }
+    }
+    .send-button {
       margin-bottom: 2rem;
     }
   }

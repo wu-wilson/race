@@ -68,7 +68,7 @@ const Dropdown = ({
             >
               {cutoff
                 ? option.length > cutoff
-                  ? option.substring(0, cutoff - 1)
+                  ? option.substring(0, cutoff - 1) + "..."
                   : option
                 : option}
             </div>
