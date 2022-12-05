@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { courtTypes, getCourts } from "../make-reservation/step2/courts";
 import { FaCalendarCheck, FaCalendarTimes } from "react-icons/fa";
 import { BsFillPeopleFill, BsFillPersonFill } from "react-icons/bs";
+import { BiStats } from "react-icons/bi";
 import { capacity } from "../make-reservation/step2/courts";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
@@ -114,6 +115,9 @@ const CourtStatus = () => {
         <>
           <div className={styles["text"]}>
             <div className={styles["title"]}>Court Status</div>
+            <div className={styles["note"]}>
+              Select a court to view its current statistics
+            </div>
             <div className={styles["dropdowns"]}>
               <div className={styles["dd"]}>
                 Type
@@ -135,11 +139,7 @@ const CourtStatus = () => {
               </div>
             </div>
             <div className={styles["note"]}>
-              Court Status is dependent on our{" "}
-              <span className={styles["highlight"]}>QR system</span>
-            </div>
-            <div className={styles["note"]}>
-              Notice anything inaccurate? Send us an email
+              Notice any statistic that's inaccurate?
             </div>
             <button
               className={styles["button"]}
@@ -149,19 +149,24 @@ const CourtStatus = () => {
             </button>
           </div>
           <div className={styles["content"]}>
-            <div
-              className={styles["status"]}
-              style={{
-                color:
+            <div className={styles["status"]}>
+              <div
+                className={styles["description"]}
+                style={{
+                  color:
+                    numPeople && capacity[courtType] <= numPeople
+                      ? "red"
+                      : "green",
+                }}
+              >
+                <BiStats className={styles["icon"]} size={20} />
+                {`${courtType} ${courtNum} is ${
                   numPeople && capacity[courtType] <= numPeople
-                    ? "red"
-                    : "green",
-              }}
-            >{`${courtType} ${courtNum} is ${
-              numPeople && capacity[courtType] <= numPeople
-                ? "Full"
-                : "Not Full"
-            }`}</div>
+                    ? "Full"
+                    : "Not Full"
+                }`}
+              </div>
+            </div>
             <div className={styles["status-card"]}>
               <div className={styles["description"]}>
                 <BsFillPersonFill className={styles["icon"]} size={15} />
