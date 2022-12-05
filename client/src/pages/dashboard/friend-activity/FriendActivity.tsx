@@ -162,6 +162,7 @@ const FriendActivity = ({
             value={friend}
             setValue={setFriend}
             width={270}
+            cutoff={19}
           />
           <div className={styles["reservation-container"]}>
             {reservations && reservations.length > 0 ? (

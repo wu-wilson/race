@@ -8,12 +8,14 @@ const Dropdown = ({
   setValue,
   width,
   height,
+  cutoff,
 }: {
   options: string[];
   value: string;
   setValue: (val: string) => void;
   width: number;
   height?: number;
+  cutoff?: number;
 }) => {
   const [open, setOpen] = useState<boolean>(false);
 
@@ -43,7 +45,11 @@ const Dropdown = ({
       style={{ width: width, height: height ? height : 50 }}
       onClick={toggle}
     >
-      {value}
+      {cutoff
+        ? value.length > cutoff
+          ? value.substring(0, cutoff - 1) + "..."
+          : value
+        : value}
       {open ? (
         <RiArrowUpSFill className={styles["arrow"]} size={20} />
       ) : (
@@ -60,7 +66,11 @@ const Dropdown = ({
               className={styles["option"]}
               onClick={() => setValue(option)}
             >
-              {option}
+              {cutoff
+                ? option.length > cutoff
+                  ? option.substring(0, cutoff - 1)
+                  : option
+                : option}
             </div>
           ))}
         </div>

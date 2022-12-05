@@ -241,7 +241,9 @@ const FriendRequest = () => {
               {requests && requests.length > 0 ? (
                 requests?.map((request) => (
                   <div key={request} className={styles["request"]}>
-                    {request}
+                    {request.length > 21
+                      ? request.substring(0, 20) + "..."
+                      : request}
                     <div className={styles["buttons"]}>
                       <AiFillCheckCircle
                         className={`${styles["request-button"]} ${styles["check"]}`}
