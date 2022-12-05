@@ -10,7 +10,7 @@ import axios from "axios";
 import Reservation from "../../../components/reservation/Reservation";
 import styles from "./MyBookings.module.scss";
 
-type booking = {
+export type booking = {
   courtType: string;
   courtNum: string;
   day: Moment;

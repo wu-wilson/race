@@ -33,7 +33,7 @@ const FriendRequest = () => {
             .post(`${process.env.REACT_APP_API_URL}/send-request`, {
               person1: auth.email,
               person2: email,
-              fUID: auth.uid,
+              uid1: auth.uid,
             })
             .then((res) => {
               setError(false);
@@ -159,6 +159,7 @@ const FriendRequest = () => {
       setAcceptingRequest(true);
       await axios
         .put(`${process.env.REACT_APP_API_URL}/accept-request`, {
+          uid2: auth.uid,
           person1: email,
           person2: auth.email,
         })
@@ -237,23 +238,32 @@ const FriendRequest = () => {
           <div className={styles["requests-container"]}>
             Pending Requests
             <div className={styles["requests"]}>
-              {requests?.map((request) => (
-                <div key={request} className={styles["request"]}>
-                  {request}
-                  <div className={styles["buttons"]}>
-                    <AiFillCheckCircle
-                      className={`${styles["request-button"]} ${styles["check"]}`}
-                      size={20}
-                      onClick={() => acceptRequest(request)}
-                    />
-                    <AiFillMinusCircle
-                      className={`${styles["request-button"]} ${styles["minus"]}`}
-                      size={20}
-                      onClick={() => deleteRequest(request)}
-                    />
+              {requests && requests.length > 0 ? (
+                requests?.map((request) => (
+                  <div key={request} className={styles["request"]}>
+                    {request}
+                    <div className={styles["buttons"]}>
+                      <AiFillCheckCircle
+                        className={`${styles["request-button"]} ${styles["check"]}`}
+                        size={20}
+                        onClick={() => acceptRequest(request)}
+                      />
+                      <AiFillMinusCircle
+                        className={`${styles["request-button"]} ${styles["minus"]}`}
+                        size={20}
+                        onClick={() => deleteRequest(request)}
+                      />
+                    </div>
                   </div>
+                ))
+              ) : (
+                <div
+                  className={styles["request"]}
+                  style={{ justifyContent: "center" }}
+                >
+                  No Requests Pending...
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>

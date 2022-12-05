@@ -44,7 +44,7 @@ const Dashboard = () => {
     {
       name: "Friend Activity",
       icon: <FaUserFriends className={styles["tab-icon"]} size={15} />,
-      component: <FriendActivity />,
+      component: <FriendActivity setSelectedTab={setSelectedTab} />,
     },
     {
       name: "Friend Requests",

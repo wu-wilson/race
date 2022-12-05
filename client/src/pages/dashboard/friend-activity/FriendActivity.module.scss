@@ -8,3 +8,75 @@
   align-items: center;
   justify-content: center;
 }
+
+.reservation-container {
+  margin-top: 2rem;
+  max-height: 380px;
+  overflow-y: auto;
+  &::-webkit-scrollbar-track {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .reservation {
+    margin-bottom: 1rem;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.no-reservations,
+.no-friends {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.button {
+  font-family: themes.$font-family;
+  padding: 15px 20px;
+  width: fit-content;
+  border-radius: 10px;
+  border: none;
+  background-color: themes.$primary-color;
+  color: white;
+  transition: ease-in background-color 200ms;
+  &:hover {
+    cursor: pointer;
+    background-color: themes.$secondary-color;
+  }
+}
+
+.title {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  .icon {
+    margin-right: 10px;
+    color: themes.$tertiary-color;
+  }
+}
+
+.subtext {
+  margin-bottom: 3rem;
+}
+
+/* Smartphones */
+@media only screen and (max-width: themes.$smartphone-bp) {
+  .container {
+    overflow-y: auto;
+    &::-webkit-scrollbar-track {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+  .reservation-container {
+    overflow-y: visible;
+    margin-bottom: 2rem;
+    max-height: fit-content;
+  }
+}

@@ -18,7 +18,8 @@ CREATE TABLE courtStatus (
 CREATE TABLE friends (
 	person1 VARCHAR(255),
 	person2 VARCHAR(255),
-    fUID VARCHAR(255),
+    uid1 VARCHAR(255),
+    uid2 VARCHAR(255),
 	requestStatus VARCHAR(255),
     PRIMARY KEY(person1, person2, requestStatus)
 );

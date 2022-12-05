@@ -182,7 +182,7 @@ app.get("/count/:courtType/:courtNum", (req: Request, res: Response) => {
 
 // Send a friend request
 app.post("/send-request", (req: Request, res: Response) => {
-  const QUERY = `INSERT INTO friends (person1, person2, fUID, requestStatus) VALUES ("${req.body.person1}", "${req.body.person2}", "${req.body.fUID}", "pending")`;
+  const QUERY = `INSERT INTO friends (person1, person2, uid1, requestStatus) VALUES ("${req.body.person1}", "${req.body.person2}", "${req.body.uid1}", "pending")`;
   pool.getConnection((err, connection) => {
     if (err) {
       connection.release();
@@ -245,13 +245,34 @@ app.delete("/delete-request", (req: Request, res: Response) => {
 
 // Accept a pending friend request
 app.put("/accept-request", (req: Request, res: Response) => {
-  const QUERY = `UPDATE friends SET requestStatus = "accepted" WHERE person1 = "${req.body.person1}" AND person2 = "${req.body.person2}" AND requestStatus = "pending"`;
+  const QUERY = `UPDATE friends SET requestStatus = "accepted", uid2 = "${req.body.uid2}" WHERE person1 = "${req.body.person1}" AND person2 = "${req.body.person2}" AND requestStatus = "pending"`;
   pool.getConnection((err, connection) => {
     if (err) {
       connection.release();
       console.log(err);
     } else {
       connection.query(QUERY, (err, result) => {
+        if (err) {
+          connection.release();
+          return res.send(err);
+        } else {
+          connection.release();
+          return res.send(result);
+        }
+      });
+    }
+  });
+});
+
+// Get the email and uid of the friends of a user
+app.get("/friends/:email", (req: Request, res: Response) => {
+  const QUERY = `(SELECT person1 AS name, uid1 AS uid FROM friends WHERE person2 = "${req.params.email}" AND requestStatus = "accepted") UNION (SELECT person2 AS name, uid2 AS uid FROM friends WHERE person1 = "${req.params.email}")`;
+  pool.getConnection((err, connection) => {
+    if (err) {
+      connection.release();
+      console.log(err);
+    } else {
+      connection.query(QUERY, [req.params.uid], (err, result) => {
         if (err) {
           connection.release();
           return res.send(err);
