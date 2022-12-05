@@ -155,42 +155,61 @@ const FriendActivity = ({
         </div>
       ) : friends && friend ? (
         <>
-          <Dropdown
-            options={friends.map((friend) => {
-              return friend.name;
-            })}
-            value={friend}
-            setValue={setFriend}
-            width={270}
-            cutoff={19}
-          />
-          <div className={styles["reservation-container"]}>
-            {reservations && reservations.length > 0 ? (
-              reservations.map((reservation) => (
-                <div
-                  key={JSON.stringify(reservation)}
-                  className={styles["reservation"]}
-                >
-                  <Reservation
-                    courtType={reservation.courtType}
-                    courtNum={reservation.courtNum}
-                    day={reservation.day}
-                    start={reservation.start}
-                    end={reservation.end}
-                    enableDelete={false}
-                    setLoading={setLoading}
-                  />
+          <div className={styles["text"]}>
+            <span className={styles["title"]}>Friend Activity</span>
+            <span className={styles["direction"]}>
+              Choose a friend to see their bookings
+            </span>
+            <button
+              className={styles["button"]}
+              onClick={() => {
+                setSelectedTab("Friend Requests");
+              }}
+            >
+              Make Another Friend Request
+            </button>
+          </div>
+          <div className={styles["content"]}>
+            <Dropdown
+              options={friends.map((friend) => {
+                return friend.name;
+              })}
+              value={friend}
+              setValue={setFriend}
+              width={270}
+              cutoff={19}
+            />
+            <div className={styles["reservation-container"]}>
+              {reservations && reservations.length > 0 ? (
+                reservations.map((reservation) => (
+                  <div
+                    key={JSON.stringify(reservation)}
+                    className={styles["reservation"]}
+                  >
+                    <Reservation
+                      courtType={reservation.courtType}
+                      courtNum={reservation.courtNum}
+                      day={reservation.day}
+                      start={reservation.start}
+                      end={reservation.end}
+                      enableDelete={false}
+                      setLoading={setLoading}
+                    />
+                  </div>
+                ))
+              ) : (
+                <div className={styles["no-reservations"]}>
+                  <div className={styles["title"]}>
+                    <BsFillEmojiFrownFill
+                      className={styles["icon"]}
+                      size={25}
+                    />
+                    No Reservations
+                  </div>
+                  <span>It seems like this user hasn't booked a court.</span>
                 </div>
-              ))
-            ) : (
-              <div className={styles["no-reservations"]}>
-                <div className={styles["title"]}>
-                  <BsFillEmojiFrownFill className={styles["icon"]} size={25} />
-                  No Reservations
-                </div>
-                <span>It seems like this user hasn't booked a court.</span>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </>
       ) : null}
